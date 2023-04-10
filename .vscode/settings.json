@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "cmath": "cpp",
+        "*.tcc": "cpp",
+        "*.ipp": "cpp",
+        "mutex": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "variant": "cpp",
+        "core": "cpp",
+        "*.txx": "cpp",
+        "functional": "cpp",
+        "type_traits": "cpp",
+        "random": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "streambuf": "cpp",
+        "regex": "cpp"
+    }
+}
