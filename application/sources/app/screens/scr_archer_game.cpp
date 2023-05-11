@@ -3,15 +3,15 @@
 #define ARCHERY_SIZE_X				(15)
 #define ARCHERY_SIZE_Y				(15)
 
-#define ARROW_MAX				 	(5)
-#define ARROW_MAX_X					(120)
+#define ARROW_MAX				(5)
+#define ARROW_MAX_X				(120)
 #define ARROW_SIZE_X				(10)
 #define ARROW_SIZE_Y				(3)
-#define ARROW_R						(2)
+#define ARROW_R					(2)
 
-#define MINE_MAX					(5)
-#define MINE_SIZE_X					(20)
-#define MINE_SIZE_y					(10)
+#define MINE_MAX				(5)
+#define MINE_SIZE_X				(20)
+#define MINE_SIZE_y				(10)
 
 #define MINE_MIN_ARROW				(1)
 #define MINE_MAX_ARROW				(8)
@@ -34,12 +34,12 @@ int score;
 static uint8_t mine_run;
 
 static const unsigned char PROGMEM ARCHERY_icon_1 [] = {
-    0x04, 0x00, 0x02, 0x00, 0x01, 0x00, 0x04, 0xc0, 0x00, 0x40, 0x08, 0x40, 0x00, 0x00, 0x1f, 0xf0, 
+    	0x04, 0x00, 0x02, 0x00, 0x01, 0x00, 0x04, 0xc0, 0x00, 0x40, 0x08, 0x40, 0x00, 0x00, 0x1f, 0xf0, 
 	0x00, 0x00, 0x08, 0x40, 0x00, 0x40, 0x04, 0xc0, 0x01, 0x00, 0x02, 0x00, 0x04, 0x00
 };
 
 static const unsigned char PROGMEM ARCHERY_icon_2 [] = {
-    0x04, 0x00, 0x02, 0x00, 0x01, 0x00, 0x04, 0xc0, 0x00, 0x40, 0x08, 0x40, 0x00, 0x20, 0x08, 0x40, 
+    	0x04, 0x00, 0x02, 0x00, 0x01, 0x00, 0x04, 0xc0, 0x00, 0x40, 0x08, 0x40, 0x00, 0x20, 0x08, 0x40, 
 	0x00, 0x20, 0x08, 0x40, 0x00, 0x40, 0x04, 0xc0, 0x01, 0x00, 0x02, 0x00, 0x04, 0x00
 };
 
@@ -117,8 +117,8 @@ void view_scr_archer_game() {
 	view_render.setCursor(60,55);
 	view_render.print(" Score:");
 	view_render.print(score);
-    view_render.drawLine(0, LCD_HEIGHT , LCD_WIDTH, LCD_HEIGHT, WHITE);
-    view_render.drawLine(0, LCD_HEIGHT-10 , LCD_WIDTH, LCD_HEIGHT-10, WHITE);
+    	view_render.drawLine(0, LCD_HEIGHT , LCD_WIDTH, LCD_HEIGHT, WHITE);
+    	view_render.drawLine(0, LCD_HEIGHT-10 , LCD_WIDTH, LCD_HEIGHT-10, WHITE);
 	view_render.drawRect(0, 0, 128, 64, 1);
     // ARCHERY
 	if (count_arrow == 0) {
