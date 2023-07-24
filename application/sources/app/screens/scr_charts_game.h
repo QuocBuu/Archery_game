@@ -23,8 +23,6 @@
 #include "scr_menu_game.h"
 #include "scr_game_over.h"
 
-
-
 extern view_dynamic_t dyn_view_item_charts_game;
 
 extern view_screen_t scr_charts_game;

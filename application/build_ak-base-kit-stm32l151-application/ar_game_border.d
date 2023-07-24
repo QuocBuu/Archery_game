@@ -1,26 +1,33 @@
-build_ak-base-kit-stm32l151-application/scr_buu.o: \
- sources/app/screens/scr_buu.cpp sources/app/screens/scr_buu.h \
- sources/ak/inc/fsm.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdint.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/features.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_newlib_version.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_intsup.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h \
- sources/ak/inc/ak.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/string.h \
+build_ak-base-kit-stm32l151-application/ar_game_border.o: \
+ sources/app/screens/ar_game_border.cpp \
+ sources/app/screens/ar_game_border.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdio.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_ansi.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/newlib.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_newlib_version.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/config.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/ieeefp.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/features.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/cdefs.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdarg.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/reent.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_ansi.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_types.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_types.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/lock.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/cdefs.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/types.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_pthreadtypes.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/types.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h \
+ sources/ak/inc/fsm.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdint.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_intsup.h \
+ sources/ak/inc/ak.h \
+ /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/string.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/string.h \
  sources/ak/inc/fsm.h sources/ak/inc/task.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdbool.h \
@@ -96,12 +103,6 @@ build_ak-base-kit-stm32l151-application/scr_buu.o: \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/math.h \
  sources/sys/sys_io.h sources/platform/stm32l/sys_cfg.h \
  sources/platform/stm32l/arduino/cores/Print.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdio.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdarg.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/types.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_pthreadtypes.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/types.h \
- /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h \
  sources/platform/stm32l/arduino/cores/Printable.h \
  sources/platform/stm32l/arduino/cores/Print.h \
  sources/platform/stm32l/arduino/cores/WString.h \
@@ -150,10 +151,12 @@ build_ak-base-kit-stm32l151-application/scr_buu.o: \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/concepts \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/bits/range_cmp.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/bits/vector.tcc \
- sources/app/screens/scr_buu.h sources/app/screens/scr_menu_game.h \
+ sources/app/screens/scr_menu_game.h \
  sources/app/screens/scr_charts_game.h \
  sources/app/screens/scr_game_over.h \
- sources/app/screens/scr_archer_game.h sources/driver/eeprom/eeprom.h \
+ sources/app/screens/scr_archery_game.h sources/driver/eeprom/eeprom.h \
  sources/app/app_eeprom.h sources/app/screens/scr_game_setting.h \
  sources/driver/button/button.h sources/app/screens/scr_idle.h \
- sources/app/screens/scr_startup.h sources/app/screens/scr_menu_game.h
+ sources/app/screens/scr_startup.h \
+ sources/app/screens/ar_game_meteoroid.h \
+ sources/app/screens/ar_game_archery.h

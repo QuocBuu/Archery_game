@@ -16,11 +16,9 @@
 #include "view_render.h"
 
 #include "buzzer.h"
-
 #include <math.h>
 #include <vector>
 
-#include "scr_buu.h"
 #include "scr_menu_game.h"
 
 extern view_dynamic_t dyn_view_idle;

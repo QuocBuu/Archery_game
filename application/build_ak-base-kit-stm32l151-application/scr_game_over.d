@@ -150,12 +150,12 @@ build_ak-base-kit-stm32l151-application/scr_game_over.o: \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/concepts \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/bits/range_cmp.h \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/bits/vector.tcc \
- sources/app/screens/scr_buu.h sources/app/screens/scr_menu_game.h \
+ sources/app/screens/scr_menu_game.h \
  sources/app/screens/scr_charts_game.h \
  sources/app/screens/scr_game_over.h \
  sources/app/screens/scr_game_setting.h sources/driver/button/button.h \
- sources/app/screens/scr_archer_game.h sources/driver/eeprom/eeprom.h \
+ sources/app/screens/scr_archery_game.h sources/driver/eeprom/eeprom.h \
  sources/app/app_eeprom.h sources/app/screens/scr_idle.h \
  sources/app/screens/scr_startup.h sources/app/screens/scr_menu_game.h \
- sources/app/screens/scr_archer_game.h \
+ sources/app/screens/scr_archery_game.h \
  sources/app/screens/scr_charts_game.h

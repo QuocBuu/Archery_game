@@ -21,9 +21,8 @@
 #include <vector>
 
 #include "scr_menu_game.h"
-#include "scr_archer_game.h"
+#include "scr_archery_game.h"
 #include "scr_charts_game.h"
-
 
 extern view_dynamic_t dyn_view_item_game_over;
 

@@ -1,2 +1,0 @@
-sources/app/screens/scr_buu.cpp:120:6:void scr_buu_handle(ak_msg_t*)	32	static
-sources/app/screens/scr_buu.cpp:98:6:void view_scr_buu()	40	static

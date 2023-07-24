@@ -27,6 +27,14 @@ enum {
 	AC_TASK_DBG_ID,
 	AC_TASK_DISPLAY_ID,
 
+	/* ARCHERY GAME ID */
+	AR_GAME_METEOROID_ID,
+	AR_GAME_BORDER_ID,
+	AR_GAME_ARCHERY_ID,
+	AR_GAME_ARROW_ID,
+	AR_GAME_BANG_ID,
+	AR_GAME_SCREEN_ID,
+
 #if defined(TASK_ZIGBEE_EN)
 	AC_TASK_ZIGBEE_ID,
 #endif
@@ -79,9 +87,13 @@ extern void task_dbg(ak_msg_t*);
 extern void task_display(ak_msg_t*);
 extern void task_zigbee(ak_msg_t*);
 
-/* HELLO TASKS*/
-extern void task_hello(ak_msg_t*);
-extern void task_hello1(ak_msg_t*);
+/* ARCHERY GAME HANDLE */
+extern void ar_game_archery_handle(ak_msg_t*);
+extern void ar_game_arrow_handle(ak_msg_t*);
+extern void ar_game_meteoroid_handle(ak_msg_t*);
+extern void ar_game_border_handle(ak_msg_t*);
+extern void ar_game_bang_handle(ak_msg_t*);
+extern void scr_archery_game_handle(ak_msg_t*);
 
 /* RF24 NETWORK TASK */
 extern void task_rf24_phy(ak_msg_t*);

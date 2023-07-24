@@ -223,11 +223,10 @@ build_ak-base-kit-stm32l151-application/app.o: sources/app/app.cpp \
  /home/buu/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/inttypes.h \
  sources/app/screens/scr_idle.h sources/app/app.h sources/app/app_dbg.h \
  sources/app/task_list.h sources/app/task_display.h \
- sources/common/view_render.h sources/app/screens/scr_buu.h \
- sources/app/screens/scr_menu_game.h \
+ sources/common/view_render.h sources/app/screens/scr_menu_game.h \
  sources/app/screens/scr_charts_game.h \
  sources/app/screens/scr_game_over.h \
- sources/app/screens/scr_archer_game.h sources/driver/eeprom/eeprom.h \
+ sources/app/screens/scr_archery_game.h sources/driver/eeprom/eeprom.h \
  sources/app/app_eeprom.h sources/app/screens/scr_game_setting.h \
  sources/app/screens/scr_idle.h sources/app/screens/scr_startup.h \
  sources/app/task_zigbee.h sources/sys/sys_irq.h \

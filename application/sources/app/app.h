@@ -127,7 +127,7 @@ enum {
 };
 
 /*****************************************************************************/
-/*  LIFE task define
+/*  SCREENS task define
  */
 /*****************************************************************************/
 /* define timer */
@@ -135,33 +135,113 @@ enum {
 #define AC_DISPLAY_STARTUP_INTERVAL									(2000)
 #define AC_DISPLAY_LOGO_INTERVAL									(10000)
 #define AC_DISPLAY_SHOW_IDLE_BALL_MOVING_UPDATE_INTERAL				(150)
-#define AC_DISPLAY_SHOW_MERRY_CHRISTMAS_SNOW_MOVING_UPDATE_INTERAL	(150)
-#define AC_DISPLAY_SHOW_MERRY_CHRISTMAS_SLEEP_INTERVAL				(15000)
-#define AC_DISPLAY_MAP_GAME											(100) 	//	map speed 1
-#define AC_DISPLAY_MAP_RUN											(150)
-#define AC_DISPLAY_CHOSSE_GAME										(200)
+
 /* define signal */
 enum {
 	AC_DISPLAY_INITIAL = AK_USER_DEFINE_SIG,
-	// AC_DISPLAY_BUTON_MODE_PRESSED,						//new
-	AC_DISPLAY_BUTON_MODE_LONG_PRESSED,					//new
-	AC_DISPLAY_BUTON_MODE_RELEASED,
-	// AC_DISPLAY_BUTON_UP_PRESSED,							//new
-	AC_DISPLAY_BUTON_UP_LONG_PRESSED,					//new
-	AC_DISPLAY_BUTON_UP_RELEASED,
-	// AC_DISPLAY_BUTON_DOWN_PRESSED,						//new
-	AC_DISPLAY_BUTON_DOWN_LONG_PRESSED,					//new
-	AC_DISPLAY_BUTON_DOWN_RELEASED,
 	AC_DISPLAY_SHOW_LOGO,
 	AC_DISPLAY_SHOW_IDLE,
 	AC_DISPLAY_SHOW_IDLE_BALL_MOVING_UPDATE,
 	AC_DISPLAY_SHOW_FW_UPDATE,
 	AC_DISPLAY_SHOW_FW_UPDATE_ERR,
-	AC_DISPLAY_SHOW_MERRY_CHRISTMAS_SNOW_MOVING_UPDATE,
-	AC_DISPLAY_SHOW_MERRY_CHRISTMAS_SLEEP,
-	AC_DISPLAY_SHOW_MAP,								// show map
-	AC_DISPLAY_SHOW_GAME,								// show game
-	AC_DISPLAY_SHOW_CHOSSE_GAME	
+};
+
+/*****************************************************************************/
+/*  BUTTON task define
+ */
+/*****************************************************************************/
+/* define timer */
+/* define signal */
+enum {
+	AC_DISPLAY_BUTTON_MODE_PRESSED = 1,						
+	AC_DISPLAY_BUTTON_MODE_LONG_PRESSED,					
+	AC_DISPLAY_BUTTON_MODE_RELEASED,
+	AC_DISPLAY_BUTTON_UP_PRESSED,							
+	AC_DISPLAY_BUTTON_UP_LONG_PRESSED,					
+	AC_DISPLAY_BUTTON_UP_RELEASED,
+	AC_DISPLAY_BUTTON_DOWN_PRESSED,						
+	AC_DISPLAY_BUTTON_DOWN_LONG_PRESSED,					
+	AC_DISPLAY_BUTTON_DOWN_RELEASED,
+};
+
+/*****************************************************************************/
+/*  Archery game 'SCREEN' task define
+ */
+/*****************************************************************************/
+/* define timer */
+#define AR_GAME_TIME_TICK_INTERVAL							(100) 	//	100m
+
+/* define signal */
+enum {
+	AR_GAME_INITIAL_SETUP = AK_USER_DEFINE_SIG,
+	AR_GAME_TIME_TICK = AR_GAME_DEFINE_SIG,
+	AR_GAME_RESET,
+	AR_GAME_EXIT_GAME,
+};
+
+/*****************************************************************************/
+/*  Archery game 'ARCHERY' task define
+ */
+/*****************************************************************************/
+/* define timer */
+/* define signal */
+enum {
+	AR_GAME_ARCHERY_SETUP = AR_GAME_DEFINE_SIG,
+	AR_GAME_ARCHERY_UPDATE,
+	AR_GAME_ARCHERY_UP,
+	AR_GAME_ARCHERY_DOWN,
+	AR_GAME_ARCHERY_RESET,
+};
+
+/*****************************************************************************/
+/*  Archery game 'ARROW' task define
+ */
+/*****************************************************************************/
+/* define timer */
+/* define signal */
+enum {
+	AR_GAME_ARROW_SETUP = AR_GAME_DEFINE_SIG,
+	AR_GAME_ARROW_RUN,
+	AR_GAME_ARROW_SHOOT,
+	AR_GAME_ARROW_RESET,
+};
+
+/*****************************************************************************/
+/*  Archery game 'BANG' task define
+ */
+/*****************************************************************************/
+/* define timer */
+/* define signal */
+enum {
+	AR_GAME_BANG_SETUP = AR_GAME_DEFINE_SIG,
+	AR_GAME_BANG_UPDATE,
+	AR_GAME_BANG_RESET,
+};
+
+/*****************************************************************************/
+/*  Archery game 'BORDER' task define
+ */
+/*****************************************************************************/
+/* define timer */
+/* define signal */
+enum {
+	AR_GAME_BORDER_SETUP = AR_GAME_DEFINE_SIG,
+	AR_GAME_BORDER_UPDATE,
+	AR_GAME_BORDER_RESET,
+	AR_GAME_CHECK_GAME_OVER,
+};
+
+/*****************************************************************************/
+/*  Archery game 'METEOROID' task define
+ */
+/*****************************************************************************/
+/* define timer */
+/* define signal */
+enum {
+	AR_GAME_METEOROID_SETUP = AR_GAME_DEFINE_SIG,
+	AR_GAME_METEOROID_RUN,
+	AR_GAME_METEOROID_DETONATOR,
+	AR_GAME_METEOROID_RESET,
 };
 
 /*****************************************************************************/
