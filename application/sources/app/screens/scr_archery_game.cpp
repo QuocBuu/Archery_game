@@ -57,7 +57,6 @@ static const unsigned char PROGMEM bitmap_bang_III [] = {
 };
 
 static ar_game_setting_t SettingSetup;
-
 uint8_t num_arrow;
 uint8_t arrow_speed;
 uint8_t meteoroid_speed;
@@ -65,28 +64,11 @@ uint8_t meteoroid_speed;
 /*****************************************************************************/
 /* View - Archery game screen*/
 /*****************************************************************************/
-static void view_scr_archery_game();
-
-view_dynamic_t dyn_view_item_archery_game = {
-	{
-		.item_type = ITEM_TYPE_DYNAMIC,
-	},
-	view_scr_archery_game
-};
-
-view_screen_t scr_archery_game = {
-	&dyn_view_item_archery_game,
-	ITEM_NULL,
-	ITEM_NULL,
-
-	.focus_item = 0,
-};
-
 void ar_game_screen_display() {
-	view_render.setTextSize(1);				// Size 
-	view_render.setTextColor(WHITE);		// Color
-	view_render.setCursor(2,55);			// Location
-	view_render.print("Arrow:");			
+	view_render.setTextSize(1);
+	view_render.setTextColor(WHITE);
+	view_render.setCursor(2,55);
+	view_render.print("Arrow:");
 	view_render.print(num_arrow);
 	view_render.setCursor(60,55);
 	view_render.print(" Score:");
@@ -94,12 +76,12 @@ void ar_game_screen_display() {
 	view_render.drawLine(0, LCD_HEIGHT, 	LCD_WIDTH, LCD_HEIGHT,		WHITE);
 	view_render.drawLine(0, LCD_HEIGHT-10, 	LCD_WIDTH, LCD_HEIGHT-10,	WHITE);
 	view_render.drawRect(0, 0, 128, 64, 1);
-} 
+}
 
 void ar_game_archery_display() {
 	if (archery.visible == WHITE && num_arrow != 0) {
 		view_render.drawBitmap(	archery.x, \
-								archery.y-10, \
+								archery.y - 10, \
 								bitmap_archery_I, \
 								SIZE_BITMAP_ARCHERY_X, \
 								SIZE_BITMAP_ARCHERY_Y, \
@@ -107,7 +89,7 @@ void ar_game_archery_display() {
 	}
 	else if (archery.visible == WHITE && num_arrow == 0) {
 		view_render.drawBitmap(	archery.x, \
-								archery.y, \
+								archery.y - 10, \
 								bitmap_archery_II, \
 								SIZE_BITMAP_ARCHERY_X, \
 								SIZE_BITMAP_ARCHERY_Y, \
@@ -205,6 +187,23 @@ void ar_game_bang_display() {
 	}
 }
 
+static void view_scr_archery_game();
+
+view_dynamic_t dyn_view_item_archery_game = {
+	{
+		.item_type = ITEM_TYPE_DYNAMIC,
+	},
+	view_scr_archery_game
+};
+
+view_screen_t scr_archery_game = {
+	&dyn_view_item_archery_game,
+	ITEM_NULL,
+	ITEM_NULL,
+
+	.focus_item = 0,
+};
+
 void view_scr_archery_game() {
 	ar_game_screen_display();
 	ar_game_archery_display();
@@ -226,6 +225,7 @@ void ar_game_level_setup() {
 	eeprom_read(EEPROM_SETTING_START_ADDR, \
 				(uint8_t*)&SettingSetup, \
 				sizeof(SettingSetup));
+	// setup
 	num_arrow = SettingSetup.num_arrow;
 	arrow_speed = SettingSetup.arrow_speed;
 	meteoroid_speed = SettingSetup.meteoroid_speed;

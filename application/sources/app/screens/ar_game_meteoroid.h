@@ -30,8 +30,8 @@ typedef struct {
     bool visible;
 	uint32_t x, y;
     uint8_t action_image;
-} ar_game_meteoroid;
+} ar_game_meteoroid_t;
 
-extern ar_game_meteoroid meteoroid[NUM_METEOROIDS];
+extern ar_game_meteoroid_t meteoroid[NUM_METEOROIDS];
 
 #endif //__AR_GAME_METEOROID_H__

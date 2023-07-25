@@ -59,6 +59,7 @@ typedef struct {
 
 static scr_menu_game_location_t menu_location;
 static scr_menu_game_chosse_t menu_chosse;
+static bool setup_menu;
 
 /*****************************************************************************/
 /* View - Menu game */
@@ -238,11 +239,14 @@ void scr_menu_game_handle(ak_msg_t* msg) {
 	switch (msg->sig) {
 		case SCREEN_ENTRY: {
 			APP_DBG_SIG("SCREEN_ENTRY\n");
-			menu_chosse.archery_game = BLACK;
-			menu_chosse.setting = WHITE;
-			menu_chosse.charts = WHITE;
-			menu_chosse.exit = WHITE;
-			menu_location.chosse = MENU_ITEM_ARRDESS_1;
+			if(setup_menu == 0) {
+				menu_chosse.archery_game = BLACK;
+				menu_chosse.setting = WHITE;
+				menu_chosse.charts = WHITE;
+				menu_chosse.exit = WHITE;
+				menu_location.chosse = MENU_ITEM_ARRDESS_1;
+				setup_menu = 1;
+			}
 		}
 			break;
 

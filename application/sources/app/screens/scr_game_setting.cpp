@@ -20,8 +20,8 @@ static const unsigned char PROGMEM chosse_icon2 [] = {
 	0xff, 0xf8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-static uint8_t setting_location_chosse;
 static ar_game_setting_t SettingData;
+static uint8_t setting_location_chosse;
 
 /*****************************************************************************/
 /* View - Setting game */

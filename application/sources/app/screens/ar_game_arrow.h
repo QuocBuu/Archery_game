@@ -21,8 +21,8 @@ typedef struct {
     bool visible;
 	uint32_t x, y;
     uint8_t action_image;
-} ar_game_arrow;
+} ar_game_arrow_t;
 
-extern ar_game_arrow arrow[MAX_NUM_ARROW];
+extern ar_game_arrow_t arrow[MAX_NUM_ARROW];
 
 #endif //__AR_GAME_ARROW_H__

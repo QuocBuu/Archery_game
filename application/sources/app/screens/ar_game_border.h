@@ -26,9 +26,9 @@ typedef struct {
     bool visible;
 	uint32_t x, y;
     uint8_t action_image;
-} ar_game_border;
+} ar_game_border_t;
 
 extern uint32_t score;
-extern ar_game_border border;
+extern ar_game_border_t border;
 
 #endif //__AR_GAME_BORDER_H__

@@ -3,6 +3,8 @@
 #include "ar_game_meteoroid.h"
 #include "ar_game_arrow.h"
 
+ar_game_bang_t bang[NUM_BANG];
+
 #define AR_GAME_BANG_SETUP() \
 do { \
     for (uint8_t i = 0; i < NUM_BANG; i++) { \
@@ -21,20 +23,19 @@ do { \
     } \
 } while (0);
 
-ar_game_bang bang[NUM_BANG];
-
-void ar_game_bang_update() {
-    for (uint8_t i = 0; i < NUM_BANG; i++) {
-        if (bang[i].visible == WHITE) {
-            bang[i].action_image++;
-        }
-        if (bang[i].action_image == 4) {
-            bang[i].action_image = 1;
-            bang[i].visible = BLACK;
-            meteoroid[i].visible = WHITE;
-        }
-    }
-}
+#define AR_GAME_BANG_UPDATE() \
+do { \
+    for (uint8_t i = 0; i < NUM_BANG; i++) { \
+        if (bang[i].visible == WHITE) { \
+            bang[i].action_image++; \
+        } \
+        if (bang[i].action_image == 4) { \
+            bang[i].action_image = 1; \
+            bang[i].visible = BLACK; \
+            meteoroid[i].visible = WHITE; \
+        } \
+    } \
+} while(0);
 
 void ar_game_bang_handle(ak_msg_t* msg) {
     switch (msg->sig) {
@@ -46,7 +47,7 @@ void ar_game_bang_handle(ak_msg_t* msg) {
 
     case AR_GAME_BANG_UPDATE: {
         APP_DBG_SIG("AR_GAME_BANG_UPDATE\n");
-        ar_game_bang_update();
+        AR_GAME_BANG_UPDATE();
     }
         break;
 
