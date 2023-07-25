@@ -58,31 +58,31 @@ do { \
 
 void ar_game_arrow_handle(ak_msg_t* msg) {
     switch (msg->sig) {
-    case AR_GAME_ARROW_SETUP: {
-        APP_DBG_SIG("AR_GAME_ARROW_SETUP\n");
-        AR_GAME_ARROW_SETUP();
-    }
-        break;
+        case AR_GAME_ARROW_SETUP: {
+            APP_DBG_SIG("AR_GAME_ARROW_SETUP\n");
+            AR_GAME_ARROW_SETUP();
+        }
+            break;
 
-    case AR_GAME_ARROW_RUN: {
-        APP_DBG_SIG("AR_GAME_ARROW_RUN\n");
-        AR_GAME_ARROW_RUN();
-    }
-        break;
+        case AR_GAME_ARROW_RUN: {
+            APP_DBG_SIG("AR_GAME_ARROW_RUN\n");
+            AR_GAME_ARROW_RUN();
+        }
+            break;
 
-    case AR_GAME_ARROW_SHOOT: {
-        APP_DBG_SIG("AR_GAME_ARROW_SHOOT\n");
-        AR_GAME_ARROW_SHOOT();
-    }
-        break;
+        case AR_GAME_ARROW_SHOOT: {
+            APP_DBG_SIG("AR_GAME_ARROW_SHOOT\n");
+            AR_GAME_ARROW_SHOOT();
+        }
+            break;
 
-    case AR_GAME_ARROW_RESET: {
-        APP_DBG_SIG("AR_GAME_ARROW_RESET\n");
-        AR_GAME_ARROW_RESET();
-    }
-        break;
+        case AR_GAME_ARROW_RESET: {
+            APP_DBG_SIG("AR_GAME_ARROW_RESET\n");
+            AR_GAME_ARROW_RESET();
+        }
+            break;
 
-    default:
-        break;
+        default:
+            break;
     }
 }

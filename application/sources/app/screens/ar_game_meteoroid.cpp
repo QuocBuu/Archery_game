@@ -73,31 +73,31 @@ do { \
 
 void ar_game_meteoroid_handle(ak_msg_t* msg) {
     switch (msg->sig) {
-    case AR_GAME_METEOROID_SETUP: {
-        APP_DBG_SIG("AR_GAME_METEOROID_SETUP\n");
-        AR_GAME_METEOROID_SETUP();
-    }
-        break;
+        case AR_GAME_METEOROID_SETUP: {
+            APP_DBG_SIG("AR_GAME_METEOROID_SETUP\n");
+            AR_GAME_METEOROID_SETUP();
+        }
+            break;
 
-    case AR_GAME_METEOROID_RUN: {
-        APP_DBG_SIG("AR_GAME_METEOROID_RUN\n");
-        AR_GAME_METEOROID_RUN();
-    }
-        break;
+        case AR_GAME_METEOROID_RUN: {
+            APP_DBG_SIG("AR_GAME_METEOROID_RUN\n");
+            AR_GAME_METEOROID_RUN();
+        }
+            break;
 
-    case AR_GAME_METEOROID_DETONATOR: {
-        APP_DBG_SIG("AR_GAME_METEOROID_DETONATOR\n");
-        AR_GAME_METEOROID_DETONATOR();
-    }
-        break;
+        case AR_GAME_METEOROID_DETONATOR: {
+            APP_DBG_SIG("AR_GAME_METEOROID_DETONATOR\n");
+            AR_GAME_METEOROID_DETONATOR();
+        }
+            break;
 
-    case AR_GAME_METEOROID_RESET: {
-        APP_DBG_SIG("AR_GAME_METEOROID_RESET\n");
-        AR_GAME_METEOROID_RESET();
-    }
-        break;
+        case AR_GAME_METEOROID_RESET: {
+            APP_DBG_SIG("AR_GAME_METEOROID_RESET\n");
+            AR_GAME_METEOROID_RESET();
+        }
+            break;
 
-    default:
-        break;
+        default:
+            break;
     }
 }

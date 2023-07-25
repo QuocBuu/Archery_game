@@ -33,37 +33,37 @@ do { \
 
 void ar_game_archery_handle(ak_msg_t* msg) {
     switch (msg->sig) {
-    case AR_GAME_ARCHERY_SETUP: {
-        APP_DBG_SIG("AR_GAME_ARCHERY_SETUP\n");
-        AR_GAME_ARCHERY_SETUP();
-    }
-        break;
+        case AR_GAME_ARCHERY_SETUP: {
+            APP_DBG_SIG("AR_GAME_ARCHERY_SETUP\n");
+            AR_GAME_ARCHERY_SETUP();
+        }
+            break;
 
-    case AR_GAME_ARCHERY_UPDATE: {
-        APP_DBG_SIG("AR_GAME_ARCHERY_UPDATE\n");
-        archery.y = archery_y;
-    }
-        break;
+        case AR_GAME_ARCHERY_UPDATE: {
+            APP_DBG_SIG("AR_GAME_ARCHERY_UPDATE\n");
+            archery.y = archery_y;
+        }
+            break;
 
-    case AR_GAME_ARCHERY_UP: {
-        APP_DBG_SIG("AR_GAME_ARCHERY_UP\n");
-        AR_GAME_ARCHERY_UP();
-    }
-        break;
+        case AR_GAME_ARCHERY_UP: {
+            APP_DBG_SIG("AR_GAME_ARCHERY_UP\n");
+            AR_GAME_ARCHERY_UP();
+        }
+            break;
 
-    case AR_GAME_ARCHERY_DOWN: {
-        APP_DBG_SIG("AR_GAME_ARCHERY_DOWN\n");
-        AR_GAME_ARCHERY_DOWN();
-    }
-        break;
+        case AR_GAME_ARCHERY_DOWN: {
+            APP_DBG_SIG("AR_GAME_ARCHERY_DOWN\n");
+            AR_GAME_ARCHERY_DOWN();
+        }
+            break;
 
-    case AR_GAME_ARCHERY_RESET: {
-        APP_DBG_SIG("AR_GAME_ARCHERY_RESET\n");
-        AR_GAME_ARCHERY_RESET();
-    }
-        break;
+        case AR_GAME_ARCHERY_RESET: {
+            APP_DBG_SIG("AR_GAME_ARCHERY_RESET\n");
+            AR_GAME_ARCHERY_RESET();
+        }
+            break;
 
-    default:
-        break;
+        default:
+            break;
     }
 }

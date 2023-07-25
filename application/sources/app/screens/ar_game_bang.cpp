@@ -39,25 +39,25 @@ do { \
 
 void ar_game_bang_handle(ak_msg_t* msg) {
     switch (msg->sig) {
-    case AR_GAME_BANG_SETUP: {
-        APP_DBG_SIG("AR_GAME_BANG_SETUP\n");
-        AR_GAME_BANG_SETUP();
-    }
-        break;
+        case AR_GAME_BANG_SETUP: {
+            APP_DBG_SIG("AR_GAME_BANG_SETUP\n");
+            AR_GAME_BANG_SETUP();
+        }
+            break;
 
-    case AR_GAME_BANG_UPDATE: {
-        APP_DBG_SIG("AR_GAME_BANG_UPDATE\n");
-        AR_GAME_BANG_UPDATE();
-    }
-        break;
+        case AR_GAME_BANG_UPDATE: {
+            APP_DBG_SIG("AR_GAME_BANG_UPDATE\n");
+            AR_GAME_BANG_UPDATE();
+        }
+            break;
 
-    case AR_GAME_BANG_RESET: {
-        APP_DBG_SIG("AR_GAME_BANG_RESET\n");
-        AR_GAME_BANG_RESET();
-    }
-        break;
+        case AR_GAME_BANG_RESET: {
+            APP_DBG_SIG("AR_GAME_BANG_RESET\n");
+            AR_GAME_BANG_RESET();
+        }
+            break;
 
-    default:
-        break;
+        default:
+            break;
     }
 }

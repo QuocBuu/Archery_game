@@ -247,6 +247,12 @@ void scr_menu_game_handle(ak_msg_t* msg) {
 				menu_location.chosse = MENU_ITEM_ARRDESS_1;
 				setup_menu = 1;
 			}
+			timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
+		}
+			break;
+		
+		case AC_DISPLAY_SHOW_IDLE: {
+			SCREEN_TRAN(scr_idle_handle,&scr_idle);
 		}
 			break;
 
