@@ -79,15 +79,13 @@ void reset_score_charts() {
 void scr_charts_game_handle(ak_msg_t* msg) {
 	switch (msg->sig) {
 		case SCREEN_ENTRY: {
-			case AC_DISPLAY_INITIAL: {
-				APP_DBG_SIG("AC_DISPLAY_INITIAL\n");
-				view_render.initialize();
-				view_render_display_on();
-				// Read score 
-				eeprom_read(EEPROM_SCORE_START_ADDR, \
-							(uint8_t*)&GameScore_charts, \
-							sizeof(GameScore_charts));
-			}
+			APP_DBG_SIG("SCREEN_ENTRY\n");
+			view_render.initialize();
+			view_render_display_on();
+			// Read score 
+			eeprom_read(EEPROM_SCORE_START_ADDR, \
+						(uint8_t*)&GameScore_charts, \
+						sizeof(GameScore_charts));
 		}
 			break;
 

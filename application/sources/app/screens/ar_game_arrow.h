@@ -12,6 +12,8 @@
 #include "task_list.h"
 #include "task_display.h"
 
+#include "buzzer.h"
+
 #define MAX_NUM_ARROW       (5)
 #define MAX_AXIS_X_ARROW    (120)
 #define SIZE_BITMAP_ARROW_X (10)

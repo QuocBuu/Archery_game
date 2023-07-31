@@ -154,7 +154,7 @@ void scr_idle_handle(ak_msg_t* msg) {
 
 			if (v_idle_ball.empty()) {
 				timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE_BALL_MOVING_UPDATE);
-			SCREEN_TRAN(scr_menu_game_handle, &scr_menu_game);
+				SCREEN_TRAN(scr_menu_game_handle, &scr_menu_game);
 			}
 		}
 			break;

@@ -15,10 +15,8 @@
 
 #define EEPROM_SCORE_START_ADDR     (0X0010)
 #define EEPROM_SCORE_PLAY_ADDR      (0X00FA)
-#define EEPROM_SCORE_END_ADDR       (0X00FF)
 
 #define EEPROM_SETTING_START_ADDR   (0X0100)
-#define EEPROM_SETTING_END_ADDR     (0X01FF)
 
 /******************************************************************************/
 /* Archey game */

@@ -8,13 +8,12 @@
 #include "message.h"
 #include "timer.h"
 
-#include "sys_ctrl.h"
-#include "sys_dbg.h"
-
 #include "app.h"
 #include "app_dbg.h"
 #include "task_list.h"
 #include "task_display.h"
+
+#include "buzzer.h"
 
 #define NUM_METEOROIDS              (5)
 #define SIZE_BITMAP_METEOROIDS_X    (20)

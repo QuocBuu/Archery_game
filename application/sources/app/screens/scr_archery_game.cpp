@@ -208,7 +208,7 @@ void view_scr_archery_game() {
 	ar_game_screen_display();
 	ar_game_archery_display();
 	ar_game_arrow_display();
-    ar_game_meteoroid_display();
+	ar_game_meteoroid_display();
 	ar_game_border_display();
 	ar_game_bang_display();
 }
@@ -248,22 +248,22 @@ void ar_game_save_score() {
 void scr_archery_game_handle(ak_msg_t* msg) {
 	switch (msg->sig) {
 		case SCREEN_ENTRY: {
-			case AR_GAME_INITIAL_SETUP: {
-				APP_DBG_SIG("AR_GAME_INITIAL_SETUP\n");
-				ar_game_screen_setup();
-				ar_game_level_setup();
-				task_post_pure_msg(AR_GAME_ARCHERY_ID, 	 AR_GAME_ARCHERY_SETUP		);
-				task_post_pure_msg(AR_GAME_ARROW_ID, 	 AR_GAME_ARROW_SETUP		);
-				task_post_pure_msg(AR_GAME_METEOROID_ID, AR_GAME_METEOROID_SETUP	);
-				task_post_pure_msg(AR_GAME_BORDER_ID, 	 AR_GAME_BORDER_SETUP		);
-				task_post_pure_msg(AR_GAME_BANG_ID, 	 AR_GAME_BANG_SETUP			);
-				ar_game_time_tick_setup();		
-			}
+			APP_DBG_SIG("SCREEN_ENTRY\n");
+			// Setup game
+			ar_game_screen_setup();
+			ar_game_level_setup();
+			task_post_pure_msg(AR_GAME_ARCHERY_ID, 	 	AR_GAME_ARCHERY_SETUP		);
+			task_post_pure_msg(AR_GAME_ARROW_ID, 	 	AR_GAME_ARROW_SETUP			);
+			task_post_pure_msg(AR_GAME_METEOROID_ID, 	AR_GAME_METEOROID_SETUP		);
+			task_post_pure_msg(AR_GAME_BORDER_ID, 	 	AR_GAME_BORDER_SETUP		);
+			task_post_pure_msg(AR_GAME_BANG_ID, 	 	AR_GAME_BANG_SETUP			);
+			ar_game_time_tick_setup();
 		}
 			break;
 
 		case AR_GAME_TIME_TICK: {
 			APP_DBG_SIG("AR_GAME_TIME_TICK\n");
+			// Time tick 
 			task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_UPDATE		);
 			task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RUN			);
 			task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_RUN		);
@@ -276,6 +276,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 
 		case AR_GAME_RESET: {
 			APP_DBG_SIG("AR_GAME_RESET\n");
+			// Reset game
 			task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_RESET		);
 			task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RESET			);
 			task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_RESET		);

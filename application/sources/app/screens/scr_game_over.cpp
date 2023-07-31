@@ -84,21 +84,19 @@ void rank_ranking() {
 void scr_game_over_handle(ak_msg_t* msg) {
 	switch (msg->sig) {
 		case SCREEN_ENTRY: {
-			case AC_DISPLAY_INITIAL: {
-				APP_DBG_SIG("AC_DISPLAY_INITIAL\n");
-				// View render
-				view_render.initialize();
-				view_render_display_on();
-				// Read score
-				eeprom_read(	EEPROM_SCORE_START_ADDR, \
-								(uint8_t*)&GameScore, \
-								sizeof(GameScore));
-				eeprom_read(	EEPROM_SCORE_PLAY_ADDR, \
-								(uint8_t*)&GameScore.score_now, \
-								sizeof(GameScore.score_now));
-				// reorganize
-				rank_ranking();
-			}
+			APP_DBG_SIG("SCREEN_ENTRY\n");
+			// View render
+			view_render.initialize();
+			view_render_display_on();
+			// Read score
+			eeprom_read(	EEPROM_SCORE_START_ADDR, \
+							(uint8_t*)&GameScore, \
+							sizeof(GameScore));
+			eeprom_read(	EEPROM_SCORE_PLAY_ADDR, \
+							(uint8_t*)&GameScore.score_now, \
+							sizeof(GameScore.score_now));
+			// reorganize
+			rank_ranking();
 		}
 			break;
 

@@ -45,8 +45,8 @@ static const unsigned char PROGMEM exit_icon [] = {
 typedef struct {
 	// menu object location
 	uint8_t chosse; 		// lua chon
-	uint8_t scroll_bar;		// thanh truoc 
-	uint8_t screen;			// khung hinh
+	uint8_t scroll_bar;							// thanh truoc 
+	uint8_t screen;								// khung hinh
 } scr_menu_game_location_t;
 
 typedef struct {
@@ -275,6 +275,7 @@ void scr_menu_game_handle(ak_msg_t* msg) {
 				menu_location.chosse = MENU_ITEM_ARRDESS_4; 
 			}
 			update_menu_screen_chosse();
+			timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
 		}
 			break;
 
@@ -285,6 +286,7 @@ void scr_menu_game_handle(ak_msg_t* msg) {
 				menu_location.chosse = MENU_ITEM_ARRDESS_1;
 			}
 			update_menu_screen_chosse();
+			timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
 		}	
 			break;
 
