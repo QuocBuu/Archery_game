@@ -237,60 +237,96 @@ void update_menu_screen_chosse() {
 
 void scr_menu_game_handle(ak_msg_t* msg) {
 	switch (msg->sig) {
-		case SCREEN_ENTRY: {
-			APP_DBG_SIG("SCREEN_ENTRY\n");
-			if(setup_menu == 0) {
-				menu_chosse.archery_game = BLACK;
-				menu_chosse.setting = WHITE;
-				menu_chosse.charts = WHITE;
-				menu_chosse.exit = WHITE;
-				menu_location.chosse = MENU_ITEM_ARRDESS_1;
-				setup_menu = 1;
-			}
-			timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
+	case SCREEN_ENTRY: {
+		APP_DBG_SIG("SCREEN_ENTRY\n");
+		// setup one shot
+		if(setup_menu == 0) {
+			menu_chosse.archery_game = BLACK;
+			menu_chosse.setting = WHITE;
+			menu_chosse.charts = WHITE;
+			menu_chosse.exit = WHITE;
+			menu_location.chosse = MENU_ITEM_ARRDESS_1;
+			setup_menu = 1;
 		}
-			break;
-		
-		case AC_DISPLAY_SHOW_IDLE: {
-			SCREEN_TRAN(scr_idle_handle,&scr_idle);
+		// timer switch to scr_idle
+		timer_set(	AC_TASK_DISPLAY_ID, \
+					AC_DISPLAY_SHOW_IDLE, \
+					AC_DISPLAY_IDLE_INTERVAL, \
+					TIMER_ONE_SHOT);
+	}
+		break;
+	
+	case AC_DISPLAY_SHOW_IDLE: {
+		SCREEN_TRAN(scr_idle_handle,&scr_idle);
+	}
+		break;
+
+	case AC_DISPLAY_BUTTON_MODE_RELEASED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_RELEASED\n");
+		// Screen transition
+		switch (menu_location.chosse){
+		case MENU_ITEM_ARRDESS_1: {
+			SCREEN_TRAN(scr_archery_game_handle,	&scr_archery_game	);
 		}
 			break;
 
-		case AC_DISPLAY_BUTTON_MODE_RELEASED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_RELEASED\n");
-			switch (menu_location.chosse){
-				case MENU_ITEM_ARRDESS_1: SCREEN_TRAN(scr_archery_game_handle,	&scr_archery_game	);	break;
-				case MENU_ITEM_ARRDESS_2: SCREEN_TRAN(scr_game_setting_handle,	&scr_game_setting	);	break;
-				case MENU_ITEM_ARRDESS_3: SCREEN_TRAN(scr_charts_game_handle, 	&scr_charts_game	);	break;
-				case MENU_ITEM_ARRDESS_4: SCREEN_TRAN(scr_idle_handle, 			&scr_idle			);	break;
-			}
-		}
-			BUZZER_PlayTones(tones_cc);
-			break;
-
-		case AC_DISPLAY_BUTTON_UP_RELEASED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_RELEASED\n");
-			menu_location.chosse -= STEP_MENU_CHOSSE;
-			if (menu_location.chosse < MENU_ITEM_ARRDESS_1) { 
-				menu_location.chosse = MENU_ITEM_ARRDESS_4; 
-			}
-			update_menu_screen_chosse();
-			timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
+		case MENU_ITEM_ARRDESS_2: {
+			SCREEN_TRAN(scr_game_setting_handle,	&scr_game_setting	);
 		}
 			break;
 
-		case AC_DISPLAY_BUTTON_DOWN_RELEASED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_RELEASED\n");
-			menu_location.chosse += STEP_MENU_CHOSSE;
-			if (menu_location.chosse > MENU_ITEM_ARRDESS_4) { 
-				menu_location.chosse = MENU_ITEM_ARRDESS_1;
-			}
-			update_menu_screen_chosse();
-			timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
-		}	
+		case MENU_ITEM_ARRDESS_3: {
+			SCREEN_TRAN(scr_charts_game_handle, 	&scr_charts_game	);
+		}
+			break;
+
+		case MENU_ITEM_ARRDESS_4: {
+			SCREEN_TRAN(scr_idle_handle, 			&scr_idle			);
+		}
 			break;
 
 		default:
 			break;
+		}
+	}
+		BUZZER_PlayTones(tones_cc);
+		break;
+
+	case AC_DISPLAY_BUTTON_UP_RELEASED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_RELEASED\n");
+		// Move up
+		menu_location.chosse -= STEP_MENU_CHOSSE;
+		if (menu_location.chosse < MENU_ITEM_ARRDESS_1) { 
+			menu_location.chosse = MENU_ITEM_ARRDESS_4; 
+		}
+		// Update menu screen
+		update_menu_screen_chosse();
+		// Reset timer switch to scr_idle
+		timer_set(	AC_TASK_DISPLAY_ID, \
+					AC_DISPLAY_SHOW_IDLE, \
+					AC_DISPLAY_IDLE_INTERVAL, \
+					TIMER_ONE_SHOT);	
+		}
+		break;
+
+	case AC_DISPLAY_BUTTON_DOWN_RELEASED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_RELEASED\n");
+		// Move down
+		menu_location.chosse += STEP_MENU_CHOSSE;
+		if (menu_location.chosse > MENU_ITEM_ARRDESS_4) { 
+			menu_location.chosse = MENU_ITEM_ARRDESS_1;
+		}
+		// update menu screen
+		update_menu_screen_chosse();
+		// Reset timer switch to scr_idle
+		timer_set(	AC_TASK_DISPLAY_ID, \
+					AC_DISPLAY_SHOW_IDLE, \
+					AC_DISPLAY_IDLE_INTERVAL, \
+					TIMER_ONE_SHOT);
+	}	
+		break;
+
+	default:
+		break;
 	}
 }

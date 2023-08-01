@@ -54,7 +54,7 @@ static const unsigned char PROGMEM bitmap_bang_III [] = {
 	0x14, 0x00, 0x00, 0x00
 };
 
-static ar_game_setting_t SettingSetup;
+static ar_game_setting_t settingsetup;
 
 uint8_t ar_game_num_arrow;
 uint8_t ar_game_arrow_speed;
@@ -222,12 +222,12 @@ void ar_game_screen_setup() {
 
 void ar_game_level_setup() {
 	eeprom_read(	EEPROM_SETTING_START_ADDR, \
-					(uint8_t*)&SettingSetup, \
-					sizeof(SettingSetup));
-	// setup
-	ar_game_num_arrow = SettingSetup.num_arrow;
-	ar_game_arrow_speed = SettingSetup.arrow_speed;
-	ar_game_meteoroid_speed = SettingSetup.meteoroid_speed;
+					(uint8_t*)&settingsetup, \
+					sizeof(settingsetup));
+	// setup level
+	ar_game_num_arrow = settingsetup.num_arrow;
+	ar_game_arrow_speed = settingsetup.arrow_speed;
+	ar_game_meteoroid_speed = settingsetup.meteoroid_speed;
 }
 
 void ar_game_time_tick_setup() {
@@ -246,72 +246,72 @@ void ar_game_save_score() {
 
 void scr_archery_game_handle(ak_msg_t* msg) {
 	switch (msg->sig) {
-		case SCREEN_ENTRY: {
-			APP_DBG_SIG("SCREEN_ENTRY\n");
-			// Setup game
-			ar_game_screen_setup();
-			ar_game_level_setup();
-			task_post_pure_msg(AR_GAME_ARCHERY_ID, 	 	AR_GAME_ARCHERY_SETUP		);
-			task_post_pure_msg(AR_GAME_ARROW_ID, 	 	AR_GAME_ARROW_SETUP			);
-			task_post_pure_msg(AR_GAME_METEOROID_ID, 	AR_GAME_METEOROID_SETUP		);
-			task_post_pure_msg(AR_GAME_BORDER_ID, 	 	AR_GAME_BORDER_SETUP		);
-			task_post_pure_msg(AR_GAME_BANG_ID, 	 	AR_GAME_BANG_SETUP			);
-			ar_game_time_tick_setup();
-		}
-			break;
+	case SCREEN_ENTRY: {
+		APP_DBG_SIG("SCREEN_ENTRY\n");
+		// Setup game
+		ar_game_screen_setup();
+		ar_game_level_setup();
+		task_post_pure_msg(AR_GAME_ARCHERY_ID, 	 	AR_GAME_ARCHERY_SETUP		);
+		task_post_pure_msg(AR_GAME_ARROW_ID, 	 	AR_GAME_ARROW_SETUP			);
+		task_post_pure_msg(AR_GAME_METEOROID_ID, 	AR_GAME_METEOROID_SETUP		);
+		task_post_pure_msg(AR_GAME_BORDER_ID, 	 	AR_GAME_BORDER_SETUP		);
+		task_post_pure_msg(AR_GAME_BANG_ID, 	 	AR_GAME_BANG_SETUP			);
+		ar_game_time_tick_setup();
+	}
+		break;
 
-		case AR_GAME_TIME_TICK: {
-			APP_DBG_SIG("AR_GAME_TIME_TICK\n");
-			// Time tick 
-			task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_UPDATE		);
-			task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RUN			);
-			task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_RUN		);
-			task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_DETONATOR	);
-			task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_BORDER_UPDATE		);
-			task_post_pure_msg(AR_GAME_BANG_ID, 		AR_GAME_BANG_UPDATE			);
-			task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_CHECK_GAME_OVER		);
-		}
-			break;
+	case AR_GAME_TIME_TICK: {
+		APP_DBG_SIG("AR_GAME_TIME_TICK\n");
+		// Time tick 
+		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_UPDATE		);
+		task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RUN			);
+		task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_RUN		);
+		task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_DETONATOR	);
+		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_BORDER_UPDATE		);
+		task_post_pure_msg(AR_GAME_BANG_ID, 		AR_GAME_BANG_UPDATE			);
+		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_CHECK_GAME_OVER		);
+	}
+		break;
 
-		case AR_GAME_RESET: {
-			APP_DBG_SIG("AR_GAME_RESET\n");
-			// Reset game
-			task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_RESET		);
-			task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RESET			);
-			task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_RESET		);
-			task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_BORDER_RESET		);
-			task_post_pure_msg(AR_GAME_BANG_ID, 		AR_GAME_BANG_RESET			);
-			task_post_pure_msg(AR_GAME_SCREEN_ID, 		AR_GAME_EXIT_GAME			);
-			BUZZER_PlayTones(tones_3beep);
-		}
-			break;
+	case AR_GAME_RESET: {
+		APP_DBG_SIG("AR_GAME_RESET\n");
+		// Reset game
+		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_RESET		);
+		task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RESET			);
+		task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_RESET		);
+		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_BORDER_RESET		);
+		task_post_pure_msg(AR_GAME_BANG_ID, 		AR_GAME_BANG_RESET			);
+		task_post_pure_msg(AR_GAME_SCREEN_ID, 		AR_GAME_EXIT_GAME			);
+		BUZZER_PlayTones(tones_3beep);
+	}
+		break;
 
-		case AR_GAME_EXIT_GAME: {
-			APP_DBG_SIG("AR_GAME_EXIT_GAME\n");
-			ar_game_save_score();
-			SCREEN_TRAN(scr_game_over_handle, &scr_game_over);		
-		}
-			break;
+	case AR_GAME_EXIT_GAME: {
+		APP_DBG_SIG("AR_GAME_EXIT_GAME\n");
+		ar_game_save_score();
+		SCREEN_TRAN(scr_game_over_handle, &scr_game_over);		
+	}
+		break;
 
-		case AC_DISPLAY_BUTTON_MODE_RELEASED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_RELEASED\n");
-			task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_SHOOT			);
-		}
-			break;
+	case AC_DISPLAY_BUTTON_MODE_RELEASED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_RELEASED\n");
+		task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_SHOOT			);
+	}
+		break;
 
-		case AC_DISPLAY_BUTTON_UP_RELEASED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_RELEASED\n");
-			task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_UP			);
-		}
-			break;
+	case AC_DISPLAY_BUTTON_UP_RELEASED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_RELEASED\n");
+		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_UP			);
+	}
+		break;
 
-		case AC_DISPLAY_BUTTON_DOWN_RELEASED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_RELEASED\n");
-			task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_DOWN		);
-		}	
-			break;
+	case AC_DISPLAY_BUTTON_DOWN_RELEASED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_RELEASED\n");
+		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_DOWN		);
+	}	
+		break;
 
-		default:
-			break;
+	default:
+		break;
 	}
 }

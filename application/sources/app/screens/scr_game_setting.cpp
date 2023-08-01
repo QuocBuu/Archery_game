@@ -18,7 +18,7 @@ static const unsigned char PROGMEM chosse_icon [] = {
 	0xff, 0xf8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-static ar_game_setting_t SettingData;
+static ar_game_setting_t settingdata;
 static uint8_t setting_location_chosse;
 
 /*****************************************************************************/
@@ -95,17 +95,17 @@ void view_scr_game_setting() {
 	view_render.setCursor(AR_GAME_SETTING_TEXT_AXIS_X, 5);
 	view_render.print(" Arrow        { }");
 	view_render.setCursor(AR_GAME_SETTING_NUMBER_AXIS_X, 5);
-	view_render.print(SettingData.num_arrow);    
+	view_render.print(settingdata.num_arrow);    
 	// Arrow speed
 	view_render.setCursor(AR_GAME_SETTING_TEXT_AXIS_X, 20);
 	view_render.print(" Arrow speed  { }");
 	view_render.setCursor(AR_GAME_SETTING_NUMBER_AXIS_X, 20);
-	view_render.print(SettingData.arrow_speed);
+	view_render.print(settingdata.arrow_speed);
 	// Mine speed
 	view_render.setCursor(AR_GAME_SETTING_TEXT_AXIS_X, 35);
 	view_render.print(" Mine  speed  { }");
 	view_render.setCursor(AR_GAME_SETTING_NUMBER_AXIS_X, 35);
-	view_render.print(SettingData.meteoroid_speed);
+	view_render.print(settingdata.meteoroid_speed);
 	// EXIT
 	view_render.setCursor(AR_GAME_SETTING_TEXT_AXIS_X + 30, 50);
 	view_render.print("  EXIT ") ;
@@ -117,98 +117,110 @@ void view_scr_game_setting() {
 /*****************************************************************************/
 void scr_game_setting_handle(ak_msg_t* msg) {
 	switch (msg->sig) {
-		case SCREEN_ENTRY: {
-			APP_DBG_SIG("SCREEN_ENTRY\n");
-			view_render.clear();
-			setting_location_chosse = SETTING_ITEM_ARRDESS_1;
-			eeprom_read(EEPROM_SETTING_START_ADDR, \
-						(uint8_t*)&SettingData, \
-						sizeof(SettingData));
+	case SCREEN_ENTRY: {
+		APP_DBG_SIG("SCREEN_ENTRY\n");
+		// Clear view
+		view_render.clear();
+		// Chosse item arrdess 1
+		setting_location_chosse = SETTING_ITEM_ARRDESS_1;
+		// Read setting data
+		eeprom_read(	EEPROM_SETTING_START_ADDR, \
+						(uint8_t*)&settingdata, \
+						sizeof(settingdata));
+	}
+		break;
+
+	case AC_DISPLAY_BUTTON_MODE_RELEASED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_RELEASED\n");
+		// Change setting data
+		switch (setting_location_chosse) {
+		case SETTING_ITEM_ARRDESS_1: {
+			// Change arrow number
+			settingdata.num_arrow++;
+			if (settingdata.num_arrow > 5) {
+				settingdata.num_arrow = 1;
+			}
 		}
 			break;
 
-		case AC_DISPLAY_BUTTON_MODE_RELEASED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_RELEASED\n");
-			switch (setting_location_chosse) {
-				case SETTING_ITEM_ARRDESS_1: {
-					SettingData.num_arrow++;
-					if (SettingData.num_arrow > 5) {
-						SettingData.num_arrow = 1;
-					}
-				}
-					break;
-
-				case SETTING_ITEM_ARRDESS_2: {
-					SettingData.arrow_speed++;
-					if (SettingData.arrow_speed > 5) { 
-						SettingData.arrow_speed = 1;
-					}
-				}
-					break;
-				
-				case SETTING_ITEM_ARRDESS_3: {
-					SettingData.meteoroid_speed++;
-					if (SettingData.meteoroid_speed > 5) { 
-						SettingData.meteoroid_speed = 1;
-					}
-				}
-					break;
-
-				case SETTING_ITEM_ARRDESS_4: {
-					eeprom_write(	EEPROM_SETTING_START_ADDR, \
-									(uint8_t*)&SettingData, \
-									sizeof(SettingData));
-					SCREEN_TRAN(scr_menu_game_handle, &scr_menu_game);
-					BUZZER_PlayTones(tones_startup);
-				}
-					break;
-				
-				default:
-					break;
+		case SETTING_ITEM_ARRDESS_2: {
+			// Change arrow speed
+			settingdata.arrow_speed++;
+			if (settingdata.arrow_speed > 5) { 
+				settingdata.arrow_speed = 1;
 			}
-			BUZZER_PlayTones(tones_cc);
+		}
+			break;
+
+		case SETTING_ITEM_ARRDESS_3: {
+			// Change meteoroid speed
+			settingdata.meteoroid_speed++;
+			if (settingdata.meteoroid_speed > 5) { 
+				settingdata.meteoroid_speed = 1;
+			}
+		}
+			break;
+
+		case SETTING_ITEM_ARRDESS_4: {
+			// Save change and exit
+			eeprom_write(	EEPROM_SETTING_START_ADDR, \
+							(uint8_t*)&settingdata, \
+							sizeof(settingdata));
+			SCREEN_TRAN(scr_menu_game_handle, &scr_menu_game);
+			BUZZER_PlayTones(tones_startup);
 		}
 			break;
 		
-		case AC_DISPLAY_BUTTON_UP_LONG_PRESSED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_LONG_PRESSED\n");
-			SettingData.num_arrow = 5;
-			SettingData.arrow_speed = 5;
-			SettingData.meteoroid_speed = 5;
-		}
-			BUZZER_PlayTones(tones_cc);
-			break;
-
-		case AC_DISPLAY_BUTTON_UP_RELEASED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_RELEASED\n");
-			setting_location_chosse -= STEP_SETTING_CHOSSE;
-			if (setting_location_chosse == SETTING_ITEM_ARRDESS_0) { 
-				setting_location_chosse = SETTING_ITEM_ARRDESS_4;
-			}     
-		}
-			BUZZER_PlayTones(tones_cc);
-			break;
-
-		case AC_DISPLAY_BUTTON_DOWN_LONG_PRESSED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_LONG_PRESSED\n");
-			SettingData.num_arrow = 1;
-			SettingData.arrow_speed = 1;
-			SettingData.meteoroid_speed = 1;
-		}
-			BUZZER_PlayTones(tones_cc);
-			break;
-
-		case AC_DISPLAY_BUTTON_DOWN_RELEASED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_RELEASED\n");
-			setting_location_chosse += STEP_SETTING_CHOSSE;
-			if (setting_location_chosse > SETTING_ITEM_ARRDESS_4) { 
-				setting_location_chosse = SETTING_ITEM_ARRDESS_1;
-			}
-		}
-			BUZZER_PlayTones(tones_cc);
-			break;
-
 		default:
 			break;
+		}
+	}
+		BUZZER_PlayTones(tones_cc);
+		break;
+	
+	case AC_DISPLAY_BUTTON_UP_LONG_PRESSED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_LONG_PRESSED\n");
+		// Change data max
+		settingdata.num_arrow = 5;
+		settingdata.arrow_speed = 5;
+		settingdata.meteoroid_speed = 5;
+	}
+		BUZZER_PlayTones(tones_cc);
+		break;
+
+	case AC_DISPLAY_BUTTON_UP_RELEASED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_RELEASED\n");
+		// Move up
+		setting_location_chosse -= STEP_SETTING_CHOSSE;
+		if (setting_location_chosse == SETTING_ITEM_ARRDESS_0) { 
+			setting_location_chosse = SETTING_ITEM_ARRDESS_4;
+		}     
+	}
+		BUZZER_PlayTones(tones_cc);
+		break;
+
+	case AC_DISPLAY_BUTTON_DOWN_LONG_PRESSED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_LONG_PRESSED\n");
+		// Change data min
+		settingdata.num_arrow = 1;
+		settingdata.arrow_speed = 1;
+		settingdata.meteoroid_speed = 1;
+	}
+		BUZZER_PlayTones(tones_cc);
+		break;
+
+	case AC_DISPLAY_BUTTON_DOWN_RELEASED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_RELEASED\n");
+		// Move down
+		setting_location_chosse += STEP_SETTING_CHOSSE;
+		if (setting_location_chosse > SETTING_ITEM_ARRDESS_4) { 
+			setting_location_chosse = SETTING_ITEM_ARRDESS_1;
+		}
+	}
+		BUZZER_PlayTones(tones_cc);
+		break;
+
+	default:
+		break;
 	}
 }

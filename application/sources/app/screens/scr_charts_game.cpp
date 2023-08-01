@@ -17,7 +17,7 @@ static const unsigned char PROGMEM bitmap_icon_charts [] = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xff, 0xff, 0xff, 0xf8, 0x00, 0x00
 };
 
-static ar_game_score_t GameScore_charts;
+static ar_game_score_t gamescore_charts;
 
 /*****************************************************************************/
 /* View - Charts game */
@@ -48,16 +48,16 @@ void view_scr_charts_game() {
     view_render.setTextSize(1);
 	view_render.setTextColor(WHITE);
 	view_render.setCursor(16, 30);
-	view_render.print(GameScore_charts.score_1st);
+	view_render.print(gamescore_charts.score_1st);
 	view_render.setCursor(86, 30);
 	view_render.print(": 1st");
 	view_render.setCursor(16, 54);
-	view_render.print(GameScore_charts.score_3rd);
+	view_render.print(gamescore_charts.score_3rd);
 	view_render.setCursor(86, 54);
 	view_render.print(": 3rd");
     view_render.setTextColor(BLACK);
 	view_render.setCursor(16, 42);
-	view_render.print(GameScore_charts.score_2nd);
+	view_render.print(gamescore_charts.score_2nd);
 	view_render.setCursor(86, 42);
 	view_render.print(": 2nd");
 }
@@ -65,50 +65,47 @@ void view_scr_charts_game() {
 /*****************************************************************************/
 /* Handle - Charts game */
 /*****************************************************************************/
-void reset_score_charts() {
-	GameScore_charts.score_1st = 0;
-	GameScore_charts.score_2nd = 0;
-	GameScore_charts.score_3rd = 0;
-	eeprom_write(	EEPROM_SCORE_START_ADDR, \
-					(uint8_t*)&GameScore_charts, \
-					sizeof(GameScore_charts));
-}
-
 void scr_charts_game_handle(ak_msg_t* msg) {
 	switch (msg->sig) {
-		case SCREEN_ENTRY: {
-			APP_DBG_SIG("SCREEN_ENTRY\n");
-			view_render.initialize();
-			view_render_display_on();
-			// Read score 
-			eeprom_read(EEPROM_SCORE_START_ADDR, \
-						(uint8_t*)&GameScore_charts, \
-						sizeof(GameScore_charts));
-		}
-			break;
+	case SCREEN_ENTRY: {
+		APP_DBG_SIG("SCREEN_ENTRY\n");
+		view_render.initialize();
+		view_render_display_on();
+		// Read score 
+		eeprom_read(	EEPROM_SCORE_START_ADDR, \
+						(uint8_t*)&gamescore_charts, \
+						sizeof(gamescore_charts));
+	}
+		break;
 
-		case AC_DISPLAY_BUTTON_MODE_RELEASED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_RELEASED\n");
-			SCREEN_TRAN(scr_menu_game_handle, &scr_menu_game);	
-		}
-			BUZZER_PlayTones(tones_cc);
-			break;
+	case AC_DISPLAY_BUTTON_MODE_RELEASED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_RELEASED\n");
+		SCREEN_TRAN(scr_menu_game_handle, &scr_menu_game);	
+	}
+		BUZZER_PlayTones(tones_cc);
+		break;
 
-		case AC_DISPLAY_BUTTON_UP_LONG_PRESSED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_LONG_PRESSED\n");
-			reset_score_charts();
-		}
-			BUZZER_PlayTones(tones_cc);
-			break;
+	case AC_DISPLAY_BUTTON_UP_LONG_PRESSED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_LONG_PRESSED\n");
+		// reset score charts
+		gamescore_charts.score_1st = 0;
+		gamescore_charts.score_2nd = 0;
+		gamescore_charts.score_3rd = 0;
+		eeprom_write(	EEPROM_SCORE_START_ADDR, \
+						(uint8_t*)&gamescore_charts, \
+						sizeof(gamescore_charts));
+	}
+		BUZZER_PlayTones(tones_cc);
+		break;
 
-		case AC_DISPLAY_BUTTON_DOWN_RELEASED: {
-			APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_RELEASED\n");
-			SCREEN_TRAN(scr_menu_game_handle, &scr_menu_game);
-		}	
-			BUZZER_PlayTones(tones_cc);
-			break;
+	case AC_DISPLAY_BUTTON_DOWN_RELEASED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_RELEASED\n");
+		SCREEN_TRAN(scr_menu_game_handle, &scr_menu_game);
+	}	
+		BUZZER_PlayTones(tones_cc);
+		break;
 
-		default:
-			break;
+	default:
+		break;
 	}
 }
