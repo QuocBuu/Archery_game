@@ -17,8 +17,8 @@
 
 #include "buzzer.h"
 
-#include <math.h>
-#include <vector>
+#include "eeprom.h"
+#include "app_eeprom.h"
 
 #include "scr_menu_game.h"
 #include "scr_archery_game.h"

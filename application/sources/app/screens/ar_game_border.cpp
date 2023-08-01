@@ -4,7 +4,7 @@
 #include "ar_game_archery.h"
 
 ar_game_border_t border;
-uint32_t score = 10;
+uint32_t ar_game_score = 10;
 
 #define AR_GAME_BORDER_SETUP() \
 do { \
@@ -21,9 +21,9 @@ do { \
 
 #define AR_GAME_BORDER_UPDATE() \
 do { \
-    if (score%200 == 0) { \
+    if (ar_game_score%200 == 0) { \
         border.x += 10; \
-        score += 10; \
+        ar_game_score += 10; \
     } \
 } while(0);
 

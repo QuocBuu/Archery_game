@@ -34,7 +34,7 @@ do { \
 do { \
     for (uint8_t i = 0; i < NUM_METEOROIDS; i++) { \
         if (meteoroid[i].visible == WHITE) { \
-            meteoroid[i].x -= meteoroid_speed; \
+            meteoroid[i].x -= ar_game_meteoroid_speed; \
             if (meteoroid[i].action_image < 4) { \
                 meteoroid[i].action_image++; \
             } \
@@ -60,8 +60,8 @@ do { \
                             bang[i].y = meteoroid[i].y+2; \
                             arrow[j].x = 0; \
                             meteoroid[i].x = (rand() % 39) + 130; \
-                            num_arrow++; \
-                            score += 10; \
+                            ar_game_num_arrow++; \
+                            ar_game_score += 10; \
                             BUZZER_PlayTones(tones_BUM); \
                         } \
                     } \

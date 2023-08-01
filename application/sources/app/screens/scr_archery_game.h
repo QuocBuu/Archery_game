@@ -19,16 +19,12 @@
 #include "app_eeprom.h"
 
 #include "buzzer.h"
-#include <math.h>
-#include <vector>
 
-#include "scr_menu_game.h"
-#include "scr_game_setting.h"
-#include "scr_idle.h"
+#include "scr_game_over.h"
 
-extern uint8_t num_arrow;
-extern uint8_t arrow_speed;
-extern uint8_t meteoroid_speed;
+extern uint8_t ar_game_num_arrow;
+extern uint8_t ar_game_arrow_speed;
+extern uint8_t ar_game_meteoroid_speed;
 
 extern view_dynamic_t dyn_view_item_archery_game;
 

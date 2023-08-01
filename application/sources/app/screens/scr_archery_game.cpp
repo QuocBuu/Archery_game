@@ -6,8 +6,6 @@
 #include "ar_game_border.h"
 #include "ar_game_meteoroid.h"
 
-#include "app_eeprom.h"
-
 /*****************************************************************************/
 /* Variable Declaration - Archery game screen */
 /*****************************************************************************/
@@ -57,9 +55,10 @@ static const unsigned char PROGMEM bitmap_bang_III [] = {
 };
 
 static ar_game_setting_t SettingSetup;
-uint8_t num_arrow;
-uint8_t arrow_speed;
-uint8_t meteoroid_speed;
+
+uint8_t ar_game_num_arrow;
+uint8_t ar_game_arrow_speed;
+uint8_t ar_game_meteoroid_speed;
 
 /*****************************************************************************/
 /* View - Archery game screen*/
@@ -69,17 +68,17 @@ void ar_game_screen_display() {
 	view_render.setTextColor(WHITE);
 	view_render.setCursor(2,55);
 	view_render.print("Arrow:");
-	view_render.print(num_arrow);
+	view_render.print(ar_game_num_arrow);
 	view_render.setCursor(60,55);
 	view_render.print(" Score:");
-	view_render.print(score);
+	view_render.print(ar_game_score);
 	view_render.drawLine(0, LCD_HEIGHT, 	LCD_WIDTH, LCD_HEIGHT,		WHITE);
 	view_render.drawLine(0, LCD_HEIGHT-10, 	LCD_WIDTH, LCD_HEIGHT-10,	WHITE);
 	view_render.drawRect(0, 0, 128, 64, 1);
 }
 
 void ar_game_archery_display() {
-	if (archery.visible == WHITE && num_arrow != 0) {
+	if (archery.visible == WHITE && ar_game_num_arrow != 0) {
 		view_render.drawBitmap(	archery.x, \
 								archery.y - 10, \
 								bitmap_archery_I, \
@@ -87,7 +86,7 @@ void ar_game_archery_display() {
 								SIZE_BITMAP_ARCHERY_Y, \
 								WHITE);
 	}
-	else if (archery.visible == WHITE && num_arrow == 0) {
+	else if (archery.visible == WHITE && ar_game_num_arrow == 0) {
 		view_render.drawBitmap(	archery.x, \
 								archery.y - 10, \
 								bitmap_archery_II, \
@@ -222,13 +221,13 @@ void ar_game_screen_setup() {
 }
 
 void ar_game_level_setup() {
-	eeprom_read(EEPROM_SETTING_START_ADDR, \
-				(uint8_t*)&SettingSetup, \
-				sizeof(SettingSetup));
+	eeprom_read(	EEPROM_SETTING_START_ADDR, \
+					(uint8_t*)&SettingSetup, \
+					sizeof(SettingSetup));
 	// setup
-	num_arrow = SettingSetup.num_arrow;
-	arrow_speed = SettingSetup.arrow_speed;
-	meteoroid_speed = SettingSetup.meteoroid_speed;
+	ar_game_num_arrow = SettingSetup.num_arrow;
+	ar_game_arrow_speed = SettingSetup.arrow_speed;
+	ar_game_meteoroid_speed = SettingSetup.meteoroid_speed;
 }
 
 void ar_game_time_tick_setup() {
@@ -240,9 +239,9 @@ void ar_game_time_tick_setup() {
 
 void ar_game_save_score() {
     eeprom_write(	EEPROM_SCORE_PLAY_ADDR, \
-					(uint8_t*)&score, \
-					sizeof(score));
-    score = 10;
+					(uint8_t*)&ar_game_score, \
+					sizeof(ar_game_score));
+    ar_game_score = 10;
 }
 
 void scr_archery_game_handle(ak_msg_t* msg) {

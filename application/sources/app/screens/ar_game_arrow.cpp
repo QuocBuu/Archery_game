@@ -7,7 +7,7 @@ ar_game_arrow_t arrow[MAX_NUM_ARROW];
 
 #define AR_GAME_ARROW_SETUP()  \
 do { \
-    for (uint8_t i = 0; i < num_arrow; i++) { \
+    for (uint8_t i = 0; i < ar_game_num_arrow; i++) { \
         arrow[i].x = 0; \
         arrow[i].y = 0; \
         arrow[i].visible = BLACK; \
@@ -17,7 +17,7 @@ do { \
 
 #define AR_GAME_ARROW_RESET() \
 do { \
-    for (uint8_t i = 0; i < num_arrow; i++) { \
+    for (uint8_t i = 0; i < ar_game_num_arrow; i++) { \
         arrow[i].x = 0; \
         arrow[i].y = 0; \
         arrow[i].visible = BLACK; \
@@ -29,11 +29,11 @@ do { \
 do { \
     for (uint8_t i = 0; i < MAX_NUM_ARROW; i++) { \
 		if (arrow[i].visible == WHITE) { \
-			arrow[i].x += arrow_speed; \
+			arrow[i].x += ar_game_arrow_speed; \
             if (arrow[i].x == MAX_AXIS_X_ARROW) { \
 				arrow[i].visible = BLACK; \
 				arrow[i].x = 0; \
-				num_arrow++; \
+				ar_game_num_arrow++; \
 			} \
 		} \
     } \
@@ -42,14 +42,14 @@ do { \
 #define AR_GAME_ARROW_SHOOT() \
 do { \
     for (uint8_t i = 0; i < MAX_NUM_ARROW; i++) { \
-        if (arrow[i].visible == BLACK && num_arrow != 0) { \
-            num_arrow--; \
+        if (arrow[i].visible == BLACK && ar_game_num_arrow != 0) { \
+            ar_game_num_arrow--; \
             arrow[i].visible = WHITE; \
             arrow[i].y = archery.y - 5; \
             BUZZER_PlayTones(tones_cc); \
             break; \
         } \
-        else if (num_arrow == 0) { \
+        else if (ar_game_num_arrow == 0) { \
             BUZZER_PlayTones(tones_3beep); \
             break; \
         } \

@@ -15,9 +15,9 @@ extern "C"
 //		PA7 --> MOSI
 //		PA6 <-- MISO
 //		PA5 --> SCK
-//		PB9  --> CSN
-//		PA8  --> CE
-//		PB1  <-- IRQ
+//		PB9 --> CSN
+//		PA8 --> CE
+//		PB1 <-- IRQ
 
 // nRF24L01 SPI peripheral
 #define nRF24_SPI_PORT       SPI1

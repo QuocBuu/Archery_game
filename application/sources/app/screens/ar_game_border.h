@@ -25,7 +25,7 @@ typedef struct {
     uint8_t action_image;
 } ar_game_border_t;
 
-extern uint32_t score;
+extern uint32_t ar_game_score;
 extern ar_game_border_t border;
 
 #endif //__AR_GAME_BORDER_H__

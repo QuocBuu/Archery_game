@@ -1,7 +1,5 @@
 #include "scr_game_over.h"
 
-#include "app_eeprom.h"
-
 /*****************************************************************************/
 /* Variable Declaration - game over */
 /*****************************************************************************/
@@ -89,12 +87,12 @@ void scr_game_over_handle(ak_msg_t* msg) {
 			view_render.initialize();
 			view_render_display_on();
 			// Read score
-			eeprom_read(	EEPROM_SCORE_START_ADDR, \
-							(uint8_t*)&GameScore, \
-							sizeof(GameScore));
-			eeprom_read(	EEPROM_SCORE_PLAY_ADDR, \
-							(uint8_t*)&GameScore.score_now, \
-							sizeof(GameScore.score_now));
+			eeprom_read(EEPROM_SCORE_START_ADDR, \
+						(uint8_t*)&GameScore, \
+						sizeof(GameScore));
+			eeprom_read(EEPROM_SCORE_PLAY_ADDR, \
+						(uint8_t*)&GameScore.score_now, \
+						sizeof(GameScore.score_now));
 			// reorganize
 			rank_ranking();
 		}

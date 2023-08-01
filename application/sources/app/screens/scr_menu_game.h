@@ -17,9 +17,10 @@
 
 #include "buzzer.h"
 
+#include "scr_archery_game.h"
 #include "scr_charts_game.h"
 #include "scr_game_setting.h"
-#include "scr_archery_game.h"
+#include "scr_idle.h"
 
 extern view_dynamic_t dyn_view_item_menu_game;
 
