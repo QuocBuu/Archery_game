@@ -38,31 +38,31 @@ do { \
 
 void ar_game_border_handle(ak_msg_t* msg) {
     switch (msg->sig) {
-        case AR_GAME_BORDER_SETUP: {
-            APP_DBG_SIG("AR_GAME_BORDER_SETUP\n");
-            AR_GAME_BORDER_SETUP();
-        }
-            break;
+    case AR_GAME_BORDER_SETUP: {
+        APP_DBG_SIG("AR_GAME_BORDER_SETUP\n");
+        AR_GAME_BORDER_SETUP();
+    }
+        break;
 
-        case AR_GAME_BORDER_UPDATE: {
-            APP_DBG_SIG("AR_GAME_BORDER_UPDATE\n");
-            AR_GAME_BORDER_UPDATE();
-        }
-            break;
+    case AR_GAME_BORDER_UPDATE: {
+        APP_DBG_SIG("AR_GAME_BORDER_UPDATE\n");
+        AR_GAME_BORDER_UPDATE();
+    }
+        break;
 
-        case AR_GAME_BORDER_RESET: {
-            APP_DBG_SIG("AR_GAME_BORDER_RESET\n");
-            AR_GAME_BORDER_RESET();
-        }
-            break;
-        
-        case AR_GAME_CHECK_GAME_OVER: {
-            APP_DBG_SIG("AR_GAME_CHECK_GAME_OVER\n");
-            AR_GAME_CHECK_GAME_OVER();
-        }
-            break;
+    case AR_GAME_BORDER_RESET: {
+        APP_DBG_SIG("AR_GAME_BORDER_RESET\n");
+        AR_GAME_BORDER_RESET();
+    }
+        break;
+    
+    case AR_GAME_CHECK_GAME_OVER: {
+        APP_DBG_SIG("AR_GAME_CHECK_GAME_OVER\n");
+        AR_GAME_CHECK_GAME_OVER();
+    }
+        break;
 
-        default:
-            break;
+    default:
+        break;
     }
 }

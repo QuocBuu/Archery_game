@@ -87,7 +87,7 @@ void scr_charts_game_handle(ak_msg_t* msg) {
 
 	case AC_DISPLAY_BUTTON_UP_LONG_PRESSED: {
 		APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_LONG_PRESSED\n");
-		// reset score charts
+		// Reset score charts
 		gamescore_charts.score_1st = 0;
 		gamescore_charts.score_2nd = 0;
 		gamescore_charts.score_3rd = 0;
