@@ -238,10 +238,10 @@ void ar_game_time_tick_setup() {
 }
 
 void ar_game_save_score() {
-    eeprom_write(	EEPROM_SCORE_PLAY_ADDR, \
+	eeprom_write(	EEPROM_SCORE_PLAY_ADDR, \
 					(uint8_t*)&ar_game_score, \
 					sizeof(ar_game_score));
-    ar_game_score = 10;
+	ar_game_score = 10;
 }
 
 void scr_archery_game_handle(ak_msg_t* msg) {

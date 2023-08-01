@@ -10,8 +10,8 @@
   *
   *****************************************************************************
   */
-#define EEPROM_START_ADDR						(0X0000)
-#define EEPROM_END_ADDR							(0X1000)
+#define EEPROM_START_ADDR           (0X0000)
+#define EEPROM_END_ADDR             (0X1000)
 
 #define EEPROM_SCORE_START_ADDR     (0X0010)
 #define EEPROM_SCORE_PLAY_ADDR      (0X00FA)
@@ -22,7 +22,7 @@
 /* Archey game */
 /******************************************************************************/
 typedef struct {
-	/* score data */
+  /* score data */
   uint32_t score_now;
   uint32_t score_1st;
   uint32_t score_2nd;

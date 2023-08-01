@@ -15,7 +15,7 @@
 
 // 'archery_icon', 15x15px
 static const unsigned char PROGMEM archery_icon [] = {
-    0x04, 0x00, 0x02, 0x00, 0x01, 0x00, 0x04, 0xc0, 0x00, 0x40, 0x08, 0x40, 0x00, 0x00, 0x1f, 0xf0, 
+	0x04, 0x00, 0x02, 0x00, 0x01, 0x00, 0x04, 0xc0, 0x00, 0x40, 0x08, 0x40, 0x00, 0x00, 0x1f, 0xf0, 
 	0x00, 0x00, 0x08, 0x40, 0x00, 0x40, 0x04, 0xc0, 0x01, 0x00, 0x02, 0x00, 0x04, 0x00
 };
 // 'dot_icon', 1x64px
@@ -41,7 +41,6 @@ static const unsigned char PROGMEM exit_icon [] = {
 	0xfc, 0x3f, 0xff, 0xc6, 0xff, 0xcc, 0xff, 0xd8, 0xff, 0xc0, 0xff, 0xc0, 0x7f, 0x80, 0x00, 0x00
 };
 
-// Structs
 typedef struct {
 	// menu object location
 	uint8_t chosse;
@@ -173,13 +172,13 @@ void view_scr_menu_game() {
 	// Text Menu
 	view_render.setTextSize(1);
 	view_render.setTextColor(menu_chosse.archery_game);
-    view_render.setCursor(AR_GAME_MENU_TEXT_AXIS_X, MENU_ITEM_ARRDESS_1 - AR_GAME_MENU_TEXT_AXIS_Y);
+	view_render.setCursor(AR_GAME_MENU_TEXT_AXIS_X, MENU_ITEM_ARRDESS_1 - AR_GAME_MENU_TEXT_AXIS_Y);
 	view_render.print("   Archery Game");
 	view_render.setTextColor(menu_chosse.setting);
-    view_render.setCursor(AR_GAME_MENU_TEXT_AXIS_X, MENU_ITEM_ARRDESS_2 - AR_GAME_MENU_TEXT_AXIS_Y);
+	view_render.setCursor(AR_GAME_MENU_TEXT_AXIS_X, MENU_ITEM_ARRDESS_2 - AR_GAME_MENU_TEXT_AXIS_Y);
 	view_render.print("   Setting");
 	view_render.setTextColor(menu_chosse.charts);
-    view_render.setCursor(AR_GAME_MENU_TEXT_AXIS_X, MENU_ITEM_ARRDESS_3 - AR_GAME_MENU_TEXT_AXIS_Y);
+	view_render.setCursor(AR_GAME_MENU_TEXT_AXIS_X, MENU_ITEM_ARRDESS_3 - AR_GAME_MENU_TEXT_AXIS_Y);
 	view_render.print("   Charts");
 	view_render.setTextColor(menu_chosse.exit);
 	view_render.setCursor(AR_GAME_MENU_TEXT_AXIS_X, MENU_ITEM_ARRDESS_4 - AR_GAME_MENU_TEXT_AXIS_Y);
@@ -322,7 +321,7 @@ void scr_menu_game_handle(ak_msg_t* msg) {
 					AC_DISPLAY_SHOW_IDLE, \
 					AC_DISPLAY_IDLE_INTERVAL, \
 					TIMER_ONE_SHOT);
-	}	
+	}
 		break;
 
 	default:

@@ -28,14 +28,14 @@ do { \
 #define AR_GAME_ARROW_RUN() \
 do { \
     for (uint8_t i = 0; i < MAX_NUM_ARROW; i++) { \
-		if (arrow[i].visible == WHITE) { \
-			arrow[i].x += ar_game_arrow_speed; \
+        if (arrow[i].visible == WHITE) { \
+            arrow[i].x += ar_game_arrow_speed; \
             if (arrow[i].x == MAX_AXIS_X_ARROW) { \
-				arrow[i].visible = BLACK; \
-				arrow[i].x = 0; \
-				ar_game_num_arrow++; \
-			} \
-		} \
+                arrow[i].visible = BLACK; \
+                arrow[i].x = 0; \
+                ar_game_num_arrow++; \
+            } \
+        } \
     } \
 } while(0);
 
