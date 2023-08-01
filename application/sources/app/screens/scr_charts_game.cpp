@@ -40,12 +40,12 @@ view_screen_t scr_charts_game = {
 };
 
 void view_scr_charts_game() {
- 	view_render.clear();
-    view_render.fillScreen(WHITE);
-    view_render.drawBitmap(35, 5, bitmap_icon_charts, 60, 20, 0);
-    view_render.fillRoundRect(1, 28, 126, 12, 5, 0);
+	view_render.clear();
+	view_render.fillScreen(WHITE);
+	view_render.drawBitmap(35, 5, bitmap_icon_charts, 60, 20, 0);
+	view_render.fillRoundRect(1, 28, 126, 12, 5, 0);
 	view_render.fillRoundRect(1, 51, 126, 12, 5, 0);
-    view_render.setTextSize(1);
+	view_render.setTextSize(1);
 	view_render.setTextColor(WHITE);
 	view_render.setCursor(16, 30);
 	view_render.print(gamescore_charts.score_1st);
@@ -55,7 +55,7 @@ void view_scr_charts_game() {
 	view_render.print(gamescore_charts.score_3rd);
 	view_render.setCursor(86, 54);
 	view_render.print(": 3rd");
-    view_render.setTextColor(BLACK);
+	view_render.setTextColor(BLACK);
 	view_render.setCursor(16, 42);
 	view_render.print(gamescore_charts.score_2nd);
 	view_render.setCursor(86, 42);

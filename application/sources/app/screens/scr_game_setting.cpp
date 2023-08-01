@@ -3,7 +3,7 @@
 /*****************************************************************************/
 /* Variable Declaration - Setting game */
 /*****************************************************************************/
-#define STEP_SETTING_CHOSSE						(15)
+#define STEP_SETTING_CHOSSE 					(15)
 
 #define SETTING_ITEM_ARRDESS_0					(0)
 #define SETTING_ITEM_ARRDESS_1					(STEP_SETTING_CHOSSE)
@@ -43,7 +43,7 @@ view_screen_t scr_game_setting = {
 
 void view_scr_game_setting() {
 // Text and Number
-#define AR_GAME_SETTING_TEXT_AXIS_X				(20)
+#define AR_GAME_SETTING_TEXT_AXIS_X 			(20)
 #define AR_GAME_SETTING_NUMBER_AXIS_X			(110)
 // Chosse icon	
 #define AR_GAME_SETTING_CHOSSE_ICON_AXIS_Y		(17)
@@ -52,7 +52,7 @@ void view_scr_game_setting() {
 // Frames	
 #define AR_GAME_SETTING_FRAMES_AXIS_X			(20)
 #define AR_GAME_SETTING_FRAMES_AXIS_Y_1			(2)
-#define AR_GAME_SETTING_FRAMES_STEP				(15)
+#define AR_GAME_SETTING_FRAMES_STEP 			(15)
 #define AR_GAME_SETTING_FRAMES_SIZE_W			(103)
 #define AR_GAME_SETTING_FRAMES_SIZE_H			(13)
 #define AR_GAME_SETTING_FRAMES_SIZE_R			(3)
@@ -73,19 +73,19 @@ void view_scr_game_setting() {
 								AR_GAME_SETTING_FRAMES_SIZE_H, 
 								AR_GAME_SETTING_FRAMES_SIZE_R, 
 								WHITE);
-    view_render.drawRoundRect(	AR_GAME_SETTING_FRAMES_AXIS_X, 
+	view_render.drawRoundRect(	AR_GAME_SETTING_FRAMES_AXIS_X, 
 								AR_GAME_SETTING_FRAMES_AXIS_Y_1 + AR_GAME_SETTING_FRAMES_STEP,	
 								AR_GAME_SETTING_FRAMES_SIZE_W, 
 								AR_GAME_SETTING_FRAMES_SIZE_H, 
 								AR_GAME_SETTING_FRAMES_SIZE_R, 
 								WHITE);
-    view_render.drawRoundRect(	AR_GAME_SETTING_FRAMES_AXIS_X, 
+	view_render.drawRoundRect(	AR_GAME_SETTING_FRAMES_AXIS_X, 
 								AR_GAME_SETTING_FRAMES_AXIS_Y_1 + AR_GAME_SETTING_FRAMES_STEP*2,	
 								AR_GAME_SETTING_FRAMES_SIZE_W, 
 								AR_GAME_SETTING_FRAMES_SIZE_H, 
 								AR_GAME_SETTING_FRAMES_SIZE_R, 
 								WHITE);
-    view_render.drawRoundRect(	AR_GAME_SETTING_FRAMES_AXIS_X, 
+	view_render.drawRoundRect(	AR_GAME_SETTING_FRAMES_AXIS_X, 
 								AR_GAME_SETTING_FRAMES_AXIS_Y_1 + AR_GAME_SETTING_FRAMES_STEP*3,	
 								AR_GAME_SETTING_FRAMES_SIZE_W, 
 								AR_GAME_SETTING_FRAMES_SIZE_H, 

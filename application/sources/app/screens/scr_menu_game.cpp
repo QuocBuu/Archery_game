@@ -5,8 +5,7 @@
 /*****************************************************************************/
 #define STEP_MENU_CHOSSE				(22)
 #define NUMBER_MENU_ITEMS				(4)
-#define SCREEN_W						(128)
-#define	SCREEN_H						(64)
+#define	SCREEN_MENU_H					(64)
 
 #define MENU_ITEM_ARRDESS_1				(STEP_MENU_CHOSSE)
 #define MENU_ITEM_ARRDESS_2				(STEP_MENU_CHOSSE*2)
@@ -85,7 +84,7 @@ void view_scr_menu_game() {
 #define AR_GAME_MENU_SCROLL_BAR_AXIS_X		(126)
 #define AR_GAME_MENU_SCROLL_BAR_AXIS_Y		(0)
 #define AR_GAME_MENU_SCROLL_BAR_SIZE_W		(3)
-#define AR_GAME_MENU_SCROLL_BAR_SIZE_H		(SCREEN_H / NUMBER_MENU_ITEMS)
+#define AR_GAME_MENU_SCROLL_BAR_SIZE_H		(SCREEN_MENU_H / NUMBER_MENU_ITEMS)
 // Frames
 #define AR_GAME_MENU_FRAMES_AXIS_X			(0)
 #define AR_GAME_MENU_FRAMES_AXIS_Y			(STEP_MENU_CHOSSE + menu_location.screen)
@@ -105,7 +104,7 @@ void view_scr_menu_game() {
 							AR_GAME_MENU_SCROLL_BAR_AXIS_Y, \
 							dot_icon, \
 							1, \
-							SCREEN_H, \
+							SCREEN_MENU_H, \
 							WHITE);
 	view_render.fillRect(	AR_GAME_MENU_SCROLL_BAR_AXIS_X - 1, \
 							menu_location.scroll_bar, \
