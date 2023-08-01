@@ -25,7 +25,7 @@ static const unsigned char PROGMEM dot_icon [] = {
 	0x00, 0x80, 0x00, 0x80, 0x00, 0x80, 0x00, 0x80, 0x00, 0x80, 0x00, 0x80, 0x00, 0x80, 0x00, 0x80, 
 	0x00, 0x80, 0x00, 0x80, 0x00, 0x80, 0x00, 0x80, 0x00, 0x80, 0x00, 0x80, 0x00, 0x80, 0x00
 };
-// 'xep_hang_icon', 16x16px
+// 'chart_icon', 16x16px
 static const unsigned char PROGMEM chart_icon [] = {
 	0x10, 0x00, 0x10, 0x00, 0x6c, 0x00, 0x28, 0x00, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7c, 0x00, 
 	0x44, 0x00, 0x57, 0xe0, 0x54, 0x20, 0x54, 0x20, 0x54, 0x3e, 0x44, 0x22, 0x44, 0x22, 0x7f, 0xfe
@@ -44,9 +44,9 @@ static const unsigned char PROGMEM exit_icon [] = {
 // Structs
 typedef struct {
 	// menu object location
-	uint8_t chosse; 		// lua chon
-	uint8_t scroll_bar;							// thanh truoc 
-	uint8_t screen;								// khung hinh
+	uint8_t chosse;
+	uint8_t scroll_bar;
+	uint8_t screen;
 } scr_menu_game_location_t;
 
 typedef struct {
@@ -101,8 +101,7 @@ void view_scr_menu_game() {
 // Text
 #define AR_GAME_MENU_TEXT_AXIS_X			(20)
 #define AR_GAME_MENU_TEXT_AXIS_Y			(AR_GAME_MENU_ICON_AXIS_Y - 5)
-
-	//scroll bar
+	// Scroll bar
 	view_render.drawBitmap(	AR_GAME_MENU_SCROLL_BAR_AXIS_X, \
 							AR_GAME_MENU_SCROLL_BAR_AXIS_Y, \
 							dot_icon, \
@@ -192,46 +191,46 @@ void view_scr_menu_game() {
 /*****************************************************************************/
 void update_menu_screen_chosse() {
 	switch (menu_location.chosse) {
-		case MENU_ITEM_ARRDESS_1: {
-			menu_chosse.archery_game = BLACK;
-			menu_chosse.setting = WHITE;
-			menu_chosse.charts = WHITE;
-			menu_chosse.exit = WHITE;
-			menu_location.scroll_bar = 0;
-			menu_location.screen = 0;
-		}
-			break;
+	case MENU_ITEM_ARRDESS_1: {
+		menu_chosse.archery_game = BLACK;
+		menu_chosse.setting = WHITE;
+		menu_chosse.charts = WHITE;
+		menu_chosse.exit = WHITE;
+		menu_location.scroll_bar = 0;
+		menu_location.screen = 0;
+	}
+		break;
 
-		case MENU_ITEM_ARRDESS_2: {
-			menu_chosse.archery_game = WHITE;
-			menu_chosse.setting = BLACK;
-			menu_chosse.charts = WHITE;
-			menu_chosse.exit = WHITE;
-			menu_location.scroll_bar = AR_GAME_MENU_SCROLL_BAR_SIZE_H;
-		}
-			break;
+	case MENU_ITEM_ARRDESS_2: {
+		menu_chosse.archery_game = WHITE;
+		menu_chosse.setting = BLACK;
+		menu_chosse.charts = WHITE;
+		menu_chosse.exit = WHITE;
+		menu_location.scroll_bar = AR_GAME_MENU_SCROLL_BAR_SIZE_H;
+	}
+		break;
 
-		case MENU_ITEM_ARRDESS_3: {
-			menu_chosse.archery_game = WHITE;
-			menu_chosse.setting = WHITE;
-			menu_chosse.charts = BLACK;
-			menu_chosse.exit = WHITE;
-			menu_location.scroll_bar = AR_GAME_MENU_SCROLL_BAR_SIZE_H*2;
-		}
-			break;
+	case MENU_ITEM_ARRDESS_3: {
+		menu_chosse.archery_game = WHITE;
+		menu_chosse.setting = WHITE;
+		menu_chosse.charts = BLACK;
+		menu_chosse.exit = WHITE;
+		menu_location.scroll_bar = AR_GAME_MENU_SCROLL_BAR_SIZE_H*2;
+	}
+		break;
 
-		case MENU_ITEM_ARRDESS_4: {
-			menu_chosse.archery_game = WHITE;
-			menu_chosse.setting = WHITE;
-			menu_chosse.charts = WHITE;
-			menu_chosse.exit = BLACK;
-			menu_location.scroll_bar = AR_GAME_MENU_SCROLL_BAR_SIZE_H*3;
-			menu_location.screen = STEP_MENU_CHOSSE;
-		}
-			break;
-		
-		default:
-			break;
+	case MENU_ITEM_ARRDESS_4: {
+		menu_chosse.archery_game = WHITE;
+		menu_chosse.setting = WHITE;
+		menu_chosse.charts = WHITE;
+		menu_chosse.exit = BLACK;
+		menu_location.scroll_bar = AR_GAME_MENU_SCROLL_BAR_SIZE_H*3;
+		menu_location.screen = STEP_MENU_CHOSSE;
+	}
+		break;
+
+	default:
+		break;
 	}
 }
 
@@ -264,7 +263,7 @@ void scr_menu_game_handle(ak_msg_t* msg) {
 	case AC_DISPLAY_BUTTON_MODE_RELEASED: {
 		APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_RELEASED\n");
 		// Screen transition
-		switch (menu_location.chosse){
+		switch (menu_location.chosse) {
 		case MENU_ITEM_ARRDESS_1: {
 			SCREEN_TRAN(scr_archery_game_handle,	&scr_archery_game	);
 		}
@@ -316,7 +315,7 @@ void scr_menu_game_handle(ak_msg_t* msg) {
 		if (menu_location.chosse > MENU_ITEM_ARRDESS_4) { 
 			menu_location.chosse = MENU_ITEM_ARRDESS_1;
 		}
-		// update menu screen
+		// Update menu screen
 		update_menu_screen_chosse();
 		// Reset timer switch to scr_idle
 		timer_set(	AC_TASK_DISPLAY_ID, \
