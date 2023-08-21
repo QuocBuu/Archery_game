@@ -9,56 +9,8 @@
 /*****************************************************************************/
 /* Variable Declaration - Archery game screen */
 /*****************************************************************************/
-// 'bitmap_archery_I', 15x15px
-static const unsigned char PROGMEM bitmap_archery_I [] = {
-	0x04, 0x00, 0x02, 0x00, 0x01, 0x00, 0x04, 0xc0, 0x00, 0x40, 0x08, 0x40, 0x00, 0x00, 0x1f, 0xf0, 
-	0x00, 0x00, 0x08, 0x40, 0x00, 0x40, 0x04, 0xc0, 0x01, 0x00, 0x02, 0x00, 0x04, 0x00
-};
-// 'bitmap_archery_II', 15x15px
-static const unsigned char PROGMEM bitmap_archery_II [] = {
-	0x04, 0x00, 0x02, 0x00, 0x01, 0x00, 0x04, 0xc0, 0x00, 0x40, 0x08, 0x40, 0x00, 0x20, 0x08, 0x40, 
-	0x00, 0x20, 0x08, 0x40, 0x00, 0x40, 0x04, 0xc0, 0x01, 0x00, 0x02, 0x00, 0x04, 0x00
-};
-// 'bitmap_meteoroid_I', 20x10px
-static const unsigned char PROGMEM bitmap_meteoroid_I [] = {
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfc, 0x78, 0x00, 0xa8, 0x00, 0x00, 0xfe, 0x3e, 0x00, 0xa8, 
-	0x00, 0x00, 0xfc, 0x78, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-// 'bitmap_meteoroid_II', 20x10px
-static const unsigned char PROGMEM bitmap_meteoroid_II [] = {
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfc, 0xe3, 0xc0, 0xa8, 0x00, 0x00, 0xfd, 0xf1, 0xf0, 0xa8, 
-	0x00, 0x00, 0xfc, 0xe3, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-// 'bitmap_meteoroid_III', 20x10px
-static const unsigned char PROGMEM bitmap_meteoroid_III [] = {
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0x80, 0x40, 0xa8, 0x00, 0x00, 0xfb, 0xe0, 0x10, 0xa8, 
-	0x00, 0x00, 0xff, 0x80, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-// 'bitmap_arrow', 10x5px
-static const unsigned char PROGMEM bitmap_arrow [] = {
-	0x00, 0x00, 0x80, 0x00, 0x7f, 0xc0, 0x80, 0x00, 0x00, 0x00
-};
-// 'bitmap_bang_I', 15x15px
-static const unsigned char PROGMEM bitmap_bang_I [] = {
-	0x00, 0x00, 0x02, 0x20, 0x02, 0x60, 0x23, 0xe0, 0x1f, 0xe0, 0x1f, 0x7c, 0x0c, 0x30, 0x78, 0x70, 
-	0x1c, 0x78, 0x0e, 0xfe, 0x1f, 0xe0, 0x13, 0x60, 0x03, 0x20, 0x02, 0x10, 0x00, 0x00
-};
-// 'bitmap_bang_II', 15x15px
-static const unsigned char PROGMEM bitmap_bang_II [] = {
-	0x00, 0x00, 0x10, 0x80, 0x09, 0x80, 0x0d, 0x90, 0x0f, 0xf0, 0xfe, 0xe0, 0x3c, 0x70, 0x1c, 0x3c, 
-	0x18, 0x60, 0x7d, 0xf0, 0x0f, 0xf0, 0x0f, 0x88, 0x0c, 0x80, 0x08, 0x80, 0x00, 0x00
-};
-// 'bitmap_bang_III', 10x10px
-static const unsigned char PROGMEM bitmap_bang_III [] = {
-	0x04, 0x00, 0x24, 0x00, 0x1d, 0x00, 0x1f, 0x00, 0x63, 0x80, 0x23, 0x00, 0x7f, 0x00, 0x1d, 0x80, 
-	0x14, 0x00, 0x00, 0x00
-};
-
-static ar_game_setting_t settingsetup;
-
-uint8_t ar_game_num_arrow;
-uint8_t ar_game_arrow_speed;
-uint8_t ar_game_meteoroid_speed;
+ar_game_setting_t settingsetup;
+uint8_t ar_game_status; 
 
 /*****************************************************************************/
 /* View - Archery game screen*/
@@ -68,7 +20,7 @@ void ar_game_screen_display() {
 	view_render.setTextColor(WHITE);
 	view_render.setCursor(2,55);
 	view_render.print("Arrow:");
-	view_render.print(ar_game_num_arrow);
+	view_render.print(settingsetup.num_arrow);
 	view_render.setCursor(60,55);
 	view_render.print(" Score:");
 	view_render.print(ar_game_score);
@@ -78,7 +30,7 @@ void ar_game_screen_display() {
 }
 
 void ar_game_archery_display() {
-	if (archery.visible == WHITE && ar_game_num_arrow != 0) {
+	if (archery.visible == WHITE && settingsetup.num_arrow != 0) {
 		view_render.drawBitmap(	archery.x, \
 								archery.y - 10, \
 								bitmap_archery_I, \
@@ -86,7 +38,7 @@ void ar_game_archery_display() {
 								SIZE_BITMAP_ARCHERY_Y, \
 								WHITE);
 	}
-	else if (archery.visible == WHITE && ar_game_num_arrow == 0) {
+	else if (archery.visible == WHITE && settingsetup.num_arrow == 0) {
 		view_render.drawBitmap(	archery.x, \
 								archery.y - 10, \
 								bitmap_archery_II, \
@@ -204,12 +156,21 @@ view_screen_t scr_archery_game = {
 };
 
 void view_scr_archery_game() {
-	ar_game_screen_display();
-	ar_game_archery_display();
-	ar_game_arrow_display();
-	ar_game_meteoroid_display();
-	ar_game_border_display();
-	ar_game_bang_display();
+	if (ar_game_status == game_on) {
+		ar_game_screen_display();
+		ar_game_archery_display();
+		ar_game_arrow_display();
+		ar_game_meteoroid_display();
+		ar_game_border_display();
+		ar_game_bang_display();
+	}
+	else if (ar_game_status == game_lose) {
+		view_render.clear();
+		view_render.setTextSize(2);
+		view_render.setTextColor(WHITE);
+		view_render.setCursor(17, 24);
+		view_render.print("YOU LOSE");
+	}
 }
 
 /*****************************************************************************/
@@ -224,10 +185,6 @@ void ar_game_level_setup() {
 	eeprom_read(	EEPROM_SETTING_START_ADDR, \
 					(uint8_t*)&settingsetup, \
 					sizeof(settingsetup));
-	// setup level
-	ar_game_num_arrow = settingsetup.num_arrow;
-	ar_game_arrow_speed = settingsetup.arrow_speed;
-	ar_game_meteoroid_speed = settingsetup.meteoroid_speed;
 }
 
 void ar_game_time_tick_setup() {
@@ -249,6 +206,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 	case SCREEN_ENTRY: {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
 		// Setup game
+		ar_game_status = game_on;
 		ar_game_screen_setup();
 		ar_game_level_setup();
 		task_post_pure_msg(AR_GAME_ARCHERY_ID, 	 	AR_GAME_ARCHERY_SETUP);
@@ -276,39 +234,27 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 	case AR_GAME_RESET: {
 		APP_DBG_SIG("AR_GAME_RESET\n");
 		// Reset game
+		ar_game_status = game_lose;
 		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_RESET);
 		task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RESET);
 		task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_RESET);
 		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_BORDER_RESET);
 		task_post_pure_msg(AR_GAME_BANG_ID, 		AR_GAME_BANG_RESET);
-		task_post_pure_msg(AR_GAME_SCREEN_ID, 		AR_GAME_EXIT_GAME);
+		// Timer
+		timer_set(	AC_TASK_DISPLAY_ID, \
+					AR_GAME_EXIT_GAME, \
+					AR_GAME_TIME_EXIT_INTERVAL, \
+					TIMER_ONE_SHOT);
 		BUZZER_PlayTones(tones_3beep);
 	}
 		break;
 
 	case AR_GAME_EXIT_GAME: {
 		APP_DBG_SIG("AR_GAME_EXIT_GAME\n");
+		ar_game_status = game_off;
 		ar_game_save_score();
 		SCREEN_TRAN(scr_game_over_handle, &scr_game_over);		
 	}
-		break;
-
-	case AC_DISPLAY_BUTTON_MODE_RELEASED: {
-		APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_RELEASED\n");
-		task_post_pure_msg(AR_GAME_ARROW_ID,		AR_GAME_ARROW_SHOOT);
-	}
-		break;
-
-	case AC_DISPLAY_BUTTON_UP_RELEASED: {
-		APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_RELEASED\n");
-		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_UP);
-	}
-		break;
-
-	case AC_DISPLAY_BUTTON_DOWN_RELEASED: {
-		APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_RELEASED\n");
-		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_DOWN);
-	}	
 		break;
 
 	default:

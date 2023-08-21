@@ -20,10 +20,10 @@
 #include "eeprom.h"
 #include "app_eeprom.h"
 
-#include "scr_menu_game.h"
+#include "screens.h"
+#include "screens_bitmap.h"
 
 extern view_dynamic_t dyn_view_item_game_setting;
-
 extern view_screen_t scr_game_setting;
 extern void scr_game_setting_handle(ak_msg_t* msg);
 

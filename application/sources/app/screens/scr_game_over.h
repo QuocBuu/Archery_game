@@ -20,12 +20,10 @@
 #include "eeprom.h"
 #include "app_eeprom.h"
 
-#include "scr_menu_game.h"
-#include "scr_archery_game.h"
-#include "scr_charts_game.h"
+#include "screens.h"
+#include "screens_bitmap.h"
 
 extern view_dynamic_t dyn_view_item_game_over;
-
 extern view_screen_t scr_game_over;
 extern void scr_game_over_handle(ak_msg_t* msg);
 

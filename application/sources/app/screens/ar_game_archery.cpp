@@ -1,7 +1,7 @@
 #include "ar_game_archery.h"
 
-ar_game_archery_t archery;
-static uint32_t archery_y = AXIS_Y_ARCHERY;
+ar_game_t archery;
+uint32_t archery_y = AXIS_Y_ARCHERY;
 
 #define AR_GAME_ARCHERY_SETUP() \
 do { \
@@ -10,14 +10,6 @@ do { \
     archery.visible = WHITE; \
     archery.action_image = 1; \
 } while (0);
-
-#define AR_GAME_ARCHERY_RESET() \
-do { \
-    archery.x = AXIS_X_ARCHERY; \
-    archery.y = AXIS_Y_ARCHERY; \
-    archery.visible = BLACK; \
-    archery_y = AXIS_Y_ARCHERY; \
-} while(0);
 
 #define AR_GAME_ARCHERY_UP() \
 do { \
@@ -29,6 +21,14 @@ do { \
 do { \
     archery_y += STEP_ARCHERY_AXIS_Y; \
     if (archery_y > 50) {archery_y = 50;} \
+} while(0);
+
+#define AR_GAME_ARCHERY_RESET() \
+do { \
+    archery.x = AXIS_X_ARCHERY; \
+    archery.y = AXIS_Y_ARCHERY; \
+    archery.visible = BLACK; \
+    archery_y = AXIS_Y_ARCHERY; \
 } while(0);
 
 void ar_game_archery_handle(ak_msg_t* msg) {

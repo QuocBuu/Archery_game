@@ -20,14 +20,17 @@
 
 #include "buzzer.h"
 
-#include "scr_game_over.h"
+#include "screens.h"
+#include "screens_bitmap.h"
 
-extern uint8_t ar_game_num_arrow;
-extern uint8_t ar_game_arrow_speed;
-extern uint8_t ar_game_meteoroid_speed;
+#define game_off		(0)
+#define game_on			(1)
+#define game_lose		(2)
+
+extern ar_game_setting_t settingsetup;
+extern uint8_t ar_game_status;
 
 extern view_dynamic_t dyn_view_item_archery_game;
-
 extern view_screen_t scr_archery_game;
 extern void scr_archery_game_handle(ak_msg_t* msg);
 

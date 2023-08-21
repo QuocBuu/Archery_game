@@ -170,8 +170,8 @@ enum {
  */
 /*****************************************************************************/
 /* define timer */
-#define AR_GAME_TIME_TICK_INTERVAL							(100) 	//	100m
-
+#define AR_GAME_TIME_TICK_INTERVAL									(100)
+#define AR_GAME_TIME_EXIT_INTERVAL									(3000)
 /* define signal */
 enum {
 	AR_GAME_INITIAL_SETUP = AK_USER_DEFINE_SIG,

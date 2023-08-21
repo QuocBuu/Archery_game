@@ -21,20 +21,11 @@ do { \
     } \
 } while (0);
 
-#define AR_GAME_METEOROID_RESET() \
-do { \
-    for (uint8_t i = 0; i < NUM_METEOROIDS; i++) { \
-        meteoroid[i].x = (rand() % 39) + 130; \
-        meteoroid[i].visible = BLACK; \
-        meteoroid[i].action_image = rand() % 3 + 1; \
-    } \
-} while (0);
-
 #define AR_GAME_METEOROID_RUN() \
 do { \
     for (uint8_t i = 0; i < NUM_METEOROIDS; i++) { \
         if (meteoroid[i].visible == WHITE) { \
-            meteoroid[i].x -= ar_game_meteoroid_speed; \
+            meteoroid[i].x -= settingsetup.meteoroid_speed; \
             if (meteoroid[i].action_image < 4) { \
                 meteoroid[i].action_image++; \
             } \
@@ -60,7 +51,7 @@ do { \
                             bang[i].y = meteoroid[i].y+2; \
                             arrow[j].x = 0; \
                             meteoroid[i].x = (rand() % 39) + 130; \
-                            ar_game_num_arrow++; \
+                            settingsetup.num_arrow++; \
                             ar_game_score += 10; \
                             BUZZER_PlayTones(tones_BUM); \
                         } \
@@ -70,6 +61,15 @@ do { \
         } \
     } \
 } while(0);
+
+#define AR_GAME_METEOROID_RESET() \
+do { \
+    for (uint8_t i = 0; i < NUM_METEOROIDS; i++) { \
+        meteoroid[i].x = (rand() % 39) + 130; \
+        meteoroid[i].visible = BLACK; \
+        meteoroid[i].action_image = rand() % 3 + 1; \
+    } \
+} while (0);
 
 void ar_game_meteoroid_handle(ak_msg_t* msg) {
     switch (msg->sig) {

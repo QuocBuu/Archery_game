@@ -13,19 +13,22 @@ do { \
     border.action_image = 0; \
 } while (0);
 
+#define AR_GAME_BORDER_UPDATE() \
+do { \
+    if (ar_game_score%200 == 0) { \
+        /* border.x += 10; */\
+        if (settingsetup.meteoroid_speed < 6) { \
+            settingsetup.meteoroid_speed++; \
+            ar_game_score += 10; \
+        } \
+    } \
+} while(0);
+
 #define AR_GAME_BORDER_RESET() \
 do { \
     border.x = AXIS_X_BORDER; \
     border.visible = BLACK; \
 } while (0);
-
-#define AR_GAME_BORDER_UPDATE() \
-do { \
-    if (ar_game_score%200 == 0) { \
-        border.x += 10; \
-        ar_game_score += 10; \
-    } \
-} while(0);
 
 #define AR_GAME_CHECK_GAME_OVER() \
 do { \
