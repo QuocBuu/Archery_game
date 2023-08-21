@@ -3,17 +3,8 @@
 /*****************************************************************************/
 /* Variable Declaration - Setting game */
 /*****************************************************************************/
-#define STEP_SETTING_CHOSSE 					(15)
-
-#define SETTING_ITEM_ARRDESS_0					(0)
-#define SETTING_ITEM_ARRDESS_1					(STEP_SETTING_CHOSSE)
-#define SETTING_ITEM_ARRDESS_2					(STEP_SETTING_CHOSSE*2)
-#define SETTING_ITEM_ARRDESS_3					(STEP_SETTING_CHOSSE*3)
-#define SETTING_ITEM_ARRDESS_4					(STEP_SETTING_CHOSSE*4)
-
-static ar_game_setting_t settingdata;
+ar_game_setting_t settingdata;
 static uint8_t setting_location_chosse;
-static uint8_t sound;
 /*****************************************************************************/
 /* View - Setting game */
 /*****************************************************************************/
@@ -35,20 +26,6 @@ view_screen_t scr_game_setting = {
 };
 
 void view_scr_game_setting() {
-// Text and Number
-#define AR_GAME_SETTING_TEXT_AXIS_X 			(20)
-#define AR_GAME_SETTING_NUMBER_AXIS_X			(110)
-// Chosse icon	
-#define AR_GAME_SETTING_CHOSSE_ICON_AXIS_Y		(17)
-#define AR_GAME_SETTING_CHOSSE_ICON_SIZE_W		(20)
-#define AR_GAME_SETTING_CHOSSE_ICON_SIZE_H		(20)
-// Frames	
-#define AR_GAME_SETTING_FRAMES_AXIS_X			(20)
-#define AR_GAME_SETTING_FRAMES_AXIS_Y_1			(2)
-#define AR_GAME_SETTING_FRAMES_STEP 			(15)
-#define AR_GAME_SETTING_FRAMES_SIZE_W			(103)
-#define AR_GAME_SETTING_FRAMES_SIZE_H			(13)
-#define AR_GAME_SETTING_FRAMES_SIZE_R			(3)
 	// Screen
 	view_render.setTextSize(1);
 	view_render.setTextColor(WHITE);
@@ -59,7 +36,7 @@ void view_scr_game_setting() {
 							AR_GAME_SETTING_CHOSSE_ICON_SIZE_W, \
 							AR_GAME_SETTING_CHOSSE_ICON_SIZE_H, \
 							WHITE);
-	if (sound == 0) {
+	if (settingdata.silent == 0) {
 		view_render.drawBitmap(	109, 
 								AR_GAME_SETTING_FRAMES_AXIS_Y_1 + AR_GAME_SETTING_FRAMES_STEP*3-12, \
 								speaker_1, \
@@ -110,9 +87,9 @@ void view_scr_game_setting() {
 	view_render.print(" Meteoroid sp ( ) ");	
 	view_render.setCursor(AR_GAME_SETTING_NUMBER_AXIS_X, 20);
 	view_render.print(settingdata.meteoroid_speed);
-	// Sound
+	// Silent
 	view_render.setCursor(AR_GAME_SETTING_TEXT_AXIS_X, 35);
-	view_render.print(" Sound            ");
+	view_render.print(" Silent           ");
 	// EXIT
 	view_render.setCursor(AR_GAME_SETTING_TEXT_AXIS_X + 32, 50);
 	view_render.print(" EXIT ") ;
@@ -160,14 +137,11 @@ void scr_game_setting_handle(ak_msg_t* msg) {
 
 		case SETTING_ITEM_ARRDESS_3: {
 			// Change meteoroid speed
-			sound++;
-			if (sound != 1) { 
-				sound = 0;
-				BUZZER_Sleep(0);
+			settingdata.silent++;
+			if (settingdata.silent > 1) { 
+				settingdata.silent = 0;
 			}
-			else {
-				BUZZER_Sleep(1);
-			}
+			BUZZER_Sleep(settingdata.silent);
 		}
 			break;
 

@@ -1,7 +1,7 @@
 #include "ar_game_archery.h"
 
-ar_game_t archery;
-uint32_t archery_y = AXIS_Y_ARCHERY;
+ar_game_archery_t archery;
+static uint32_t archery_y = AXIS_Y_ARCHERY;
 
 #define AR_GAME_ARCHERY_SETUP() \
 do { \
