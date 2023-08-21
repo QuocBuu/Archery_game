@@ -5,6 +5,7 @@
 /*****************************************************************************/
 ar_game_setting_t settingdata;
 static uint8_t setting_location_chosse;
+
 /*****************************************************************************/
 /* View - Setting game */
 /*****************************************************************************/
@@ -137,10 +138,7 @@ void scr_game_setting_handle(ak_msg_t* msg) {
 
 		case SETTING_ITEM_ARRDESS_3: {
 			// Change meteoroid speed
-			settingdata.silent++;
-			if (settingdata.silent > 1) { 
-				settingdata.silent = 0;
-			}
+			settingdata.silent = !settingdata.silent;
 			BUZZER_Sleep(settingdata.silent);
 		}
 			break;
@@ -168,7 +166,9 @@ void scr_game_setting_handle(ak_msg_t* msg) {
 		// Change data max
 		settingdata.num_arrow = 5;
 		settingdata.meteoroid_speed = 5;
+		settingdata.silent = 0;
 	}
+		BUZZER_Sleep(settingdata.silent);
 		BUZZER_PlayTones(tones_cc);
 		break;
 
@@ -188,7 +188,9 @@ void scr_game_setting_handle(ak_msg_t* msg) {
 		// Change data min
 		settingdata.num_arrow = 1;
 		settingdata.meteoroid_speed = 1;
+		settingdata.silent = 1;
 	}
+		BUZZER_Sleep(settingdata.silent);
 		BUZZER_PlayTones(tones_cc);
 		break;
 

@@ -49,6 +49,21 @@
 #define AR_GAME_MENU_TEXT_AXIS_X			(20)
 #define AR_GAME_MENU_TEXT_AXIS_Y			(AR_GAME_MENU_ICON_AXIS_Y - 5)
 
+typedef struct {
+	// menu object location
+	uint8_t chosse;
+	uint8_t scroll_bar;
+	uint8_t screen;
+} scr_menu_game_location_t;
+
+typedef struct {
+	// menu items
+	bool archery_game;
+	bool setting;
+	bool charts;
+	bool exit;
+} scr_menu_game_chosse_t;
+
 extern view_dynamic_t dyn_view_item_menu_game;
 extern view_screen_t scr_menu_game;
 extern void scr_menu_game_handle(ak_msg_t* msg);

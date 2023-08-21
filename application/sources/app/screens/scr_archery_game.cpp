@@ -1,16 +1,10 @@
 #include "scr_archery_game.h"
 
-#include "ar_game_archery.h"
-#include "ar_game_arrow.h"
-#include "ar_game_bang.h"
-#include "ar_game_border.h"
-#include "ar_game_meteoroid.h"
-
 /*****************************************************************************/
 /* Variable Declaration - Archery game screen */
 /*****************************************************************************/
-ar_game_setting_t settingsetup;
 uint8_t ar_game_status; 
+ar_game_setting_t settingsetup;
 
 /*****************************************************************************/
 /* View - Archery game screen*/

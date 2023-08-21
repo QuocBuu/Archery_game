@@ -31,10 +31,10 @@ typedef struct {
 
 typedef struct {
   /* setting data */
+  bool silent;
   uint8_t num_arrow;
   uint8_t arrow_speed;
   uint8_t meteoroid_speed;
-  bool silent;
 } ar_game_setting_t;
 
 #endif //__APP_EEPROM_H__

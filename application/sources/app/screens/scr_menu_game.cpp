@@ -1,26 +1,11 @@
 #include "scr_menu_game.h"
 
 /*****************************************************************************/
-/* Variable and Struct Declaration - Menu game */
+/* Variable Declaration - Menu game */
 /*****************************************************************************/
-typedef struct {
-	// menu object location
-	uint8_t chosse;
-	uint8_t scroll_bar;
-	uint8_t screen;
-} scr_menu_game_location_t;
-
-typedef struct {
-	// menu items
-	bool archery_game;
-	bool setting;
-	bool charts;
-	bool exit;
-} scr_menu_game_chosse_t;
-
+static bool setup_menu;
 static scr_menu_game_location_t menu_location;
 static scr_menu_game_chosse_t menu_chosse;
-static bool setup_menu;
 
 /*****************************************************************************/
 /* View - Menu game */
