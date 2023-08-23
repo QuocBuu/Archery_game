@@ -29,9 +29,9 @@
 #include "ar_game_border.h"
 #include "ar_game_meteoroid.h"
 
-#define game_off		(0)
-#define game_on			(1)
-#define game_lose		(2)
+#define GAME_OFF		(0)
+#define GAME_ON			(1)
+#define GAME_LOSE		(2)
 
 extern uint8_t ar_game_status;
 extern ar_game_setting_t settingsetup;

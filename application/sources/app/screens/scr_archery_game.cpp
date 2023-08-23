@@ -150,7 +150,7 @@ view_screen_t scr_archery_game = {
 };
 
 void view_scr_archery_game() {
-	if (ar_game_status == game_on) {
+	if (ar_game_status == GAME_ON) {
 		ar_game_screen_display();
 		ar_game_archery_display();
 		ar_game_arrow_display();
@@ -158,7 +158,7 @@ void view_scr_archery_game() {
 		ar_game_border_display();
 		ar_game_bang_display();
 	}
-	else if (ar_game_status == game_lose) {
+	else if (ar_game_status == GAME_LOSE) {
 		view_render.clear();
 		view_render.setTextSize(2);
 		view_render.setTextColor(WHITE);
@@ -200,7 +200,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 	case SCREEN_ENTRY: {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
 		// Setup game
-		ar_game_status = game_on;
+		ar_game_status = GAME_ON;
 		ar_game_screen_setup();
 		ar_game_level_setup();
 		task_post_pure_msg(AR_GAME_ARCHERY_ID, 	 	AR_GAME_ARCHERY_SETUP);
@@ -228,7 +228,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 	case AR_GAME_RESET: {
 		APP_DBG_SIG("AR_GAME_RESET\n");
 		// Reset game
-		ar_game_status = game_lose;
+		ar_game_status = GAME_LOSE;
 		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_RESET);
 		task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RESET);
 		task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_RESET);
@@ -245,7 +245,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 
 	case AR_GAME_EXIT_GAME: {
 		APP_DBG_SIG("AR_GAME_EXIT_GAME\n");
-		ar_game_status = game_off;
+		ar_game_status = GAME_OFF;
 		ar_game_save_score();
 		SCREEN_TRAN(scr_game_over_handle, &scr_game_over);		
 	}

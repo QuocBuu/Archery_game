@@ -133,7 +133,7 @@ enum {
 /* define timer */
 #define AC_DISPLAY_INITIAL_INTERVAL									(100)
 #define AC_DISPLAY_STARTUP_INTERVAL									(2000)
-#define AC_DISPLAY_IDLE_INTERVAL									(10000)
+#define AC_DISPLAY_IDLE_INTERVAL									(20000)
 #define AC_DISPLAY_LOGO_INTERVAL									(10000)
 #define AC_DISPLAY_SHOW_IDLE_BALL_MOVING_UPDATE_INTERAL				(150)
 
