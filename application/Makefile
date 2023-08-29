@@ -53,10 +53,8 @@ USB_OPTION = -UUSING_USB_MOD
 
 # Interface compile option.
 IF_LINK_OPTION = -DIF_LINK_UART_EN
-IF_NETWORK_NRF24_OPTION = -UIF_NETWORK_NRF24_EN
 
 # Task compile option.
-TASK_ZIGBEE_OPTION = -UTASK_ZIGBEE_EN
 TASK_MBMASTER_OPTION = -DTASK_MBMASTER_EN
 
 # Include sources file
@@ -64,7 +62,6 @@ include sources/ak/Makefile.mk
 include sources/app/Makefile.mk
 include sources/common/Makefile.mk
 include sources/driver/Makefile.mk
-include sources/libraries/Makefile.mk
 include sources/sys/Makefile.mk
 include sources/networks/Makefile.mk
 include sources/platform/stm32l/Makefile.mk

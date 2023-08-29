@@ -80,21 +80,6 @@ enum {
 };
 
 /*****************************************************************************/
-/*  RF24 task define
- */
-/*****************************************************************************/
-/* private define */
-/* define timer */
-/* define signal */
-enum {
-	AC_RF24_IF_INIT_NETWORK = AK_USER_DEFINE_SIG,
-	AC_RF24_IF_PURE_MSG_OUT,
-	AC_RF24_IF_COMMON_MSG_OUT,
-	AC_RF24_IF_PURE_MSG_IN,
-	AC_RF24_IF_COMMON_MSG_IN,
-};
-
-/*****************************************************************************/
 /* IF task define
  */
 /*****************************************************************************/
@@ -243,30 +228,6 @@ enum {
 	AR_GAME_METEOROID_RUN,
 	AR_GAME_METEOROID_DETONATOR,
 	AR_GAME_METEOROID_RESET,
-};
-
-/*****************************************************************************/
-/*  ZIGBEE task define
- */
-/*****************************************************************************/
-/* define timer */
-/* define signal */
-enum {
-	AC_ZIGBEE_INIT = AK_USER_DEFINE_SIG,
-	AC_ZIGBEE_FORCE_START_COODINATOR,
-	AC_ZIGBEE_START_COODINATOR,
-	AC_ZIGBEE_PERMIT_JOINING_REQ,
-	AC_ZIGBEE_ZCL_CMD_HANDLER
-};
-
-/*****************************************************************************/
-/* DBG task define
- */
-/*****************************************************************************/
-/* define timer */
-/* define signal */
-enum {
-	AC_DBG_TEST_1 = AK_USER_DEFINE_SIG,
 };
 
 /*****************************************************************************/

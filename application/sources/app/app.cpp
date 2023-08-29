@@ -39,23 +39,19 @@
 #include "task_shell.h"
 #include "task_life.h"
 #include "task_if.h"
-#include "task_rf24_if.h"
 #include "task_uart_if.h"
 #include "task_display.h"
-#include "task_zigbee.h"
 
 /* sys include */
 #include "sys_boot.h"
 #include "sys_irq.h"
 #include "sys_io.h"
 #include "sys_ctrl.h"
-#include "sys_dbg.h"
 
 /* arduino include */
 #include "SPI.h"
 #include "WString.h"
 #include "HardwareSerial.h"
-#include "ArduinoJson.h"
 
 /* common include */
 #include "screen_manager.h"
@@ -374,7 +370,6 @@ void app_init_state_machine() {
 void app_task_init() {
 	SCREEN_CTOR(&scr_mng_app, scr_startup_handle, &scr_startup);
 
-	task_post_pure_msg(AC_TASK_RF24_IF_ID, AC_RF24_IF_INIT_NETWORK);
 	task_post_pure_msg(AC_TASK_UART_IF_ID, AC_UART_IF_INIT);
 }
 
