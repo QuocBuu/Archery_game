@@ -31,7 +31,7 @@
 
 #define GAME_OFF		(0)
 #define GAME_ON			(1)
-#define GAME_LOSE		(2)
+#define GAME_OVER		(2)
 
 extern uint8_t ar_game_status;
 extern ar_game_setting_t settingsetup;

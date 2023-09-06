@@ -158,7 +158,7 @@ void view_scr_archery_game() {
 		ar_game_border_display();
 		ar_game_bang_display();
 	}
-	else if (ar_game_status == GAME_LOSE) {
+	else if (ar_game_status == GAME_OVER) {
 		view_render.clear();
 		view_render.setTextSize(2);
 		view_render.setTextColor(WHITE);
@@ -170,11 +170,6 @@ void view_scr_archery_game() {
 /*****************************************************************************/
 /* Handle - Archery game screen */
 /*****************************************************************************/
-void ar_game_screen_setup() {
-	view_render.initialize();
-	view_render_display_on();
-}
-
 void ar_game_level_setup() {
 	eeprom_read(	EEPROM_SETTING_START_ADDR, \
 					(uint8_t*)&settingsetup, \
@@ -188,7 +183,7 @@ void ar_game_time_tick_setup() {
 				TIMER_PERIODIC);
 }
 
-void ar_game_save_score() {
+void ar_game_save_and_reset_score() {
 	eeprom_write(	EEPROM_SCORE_PLAY_ADDR, \
 					(uint8_t*)&ar_game_score, \
 					sizeof(ar_game_score));
@@ -199,54 +194,60 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 	switch (msg->sig) {
 	case SCREEN_ENTRY: {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
-		// Setup game
-		ar_game_status = GAME_ON;
-		ar_game_screen_setup();
+		// Level setup
 		ar_game_level_setup();
+		// Setup game Object
 		task_post_pure_msg(AR_GAME_ARCHERY_ID, 	 	AR_GAME_ARCHERY_SETUP);
 		task_post_pure_msg(AR_GAME_ARROW_ID, 	 	AR_GAME_ARROW_SETUP);
 		task_post_pure_msg(AR_GAME_METEOROID_ID, 	AR_GAME_METEOROID_SETUP);
-		task_post_pure_msg(AR_GAME_BORDER_ID, 	 	AR_GAME_BORDER_SETUP);
 		task_post_pure_msg(AR_GAME_BANG_ID, 	 	AR_GAME_BANG_SETUP);
+		task_post_pure_msg(AR_GAME_BORDER_ID, 	 	AR_GAME_BORDER_SETUP);
+		// Setup timer
 		ar_game_time_tick_setup();
+		// Status update
+		ar_game_status = GAME_ON;
 	}
 		break;
 
 	case AR_GAME_TIME_TICK: {
 		APP_DBG_SIG("AR_GAME_TIME_TICK\n");
-		// Time tick 
+		// Time tick
 		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_UPDATE);
 		task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RUN);
 		task_post_pure_msg(AR_GAME_METEOROID_ID, 	AR_GAME_METEOROID_RUN);
 		task_post_pure_msg(AR_GAME_METEOROID_ID, 	AR_GAME_METEOROID_DETONATOR);
-		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_BORDER_UPDATE);
 		task_post_pure_msg(AR_GAME_BANG_ID, 		AR_GAME_BANG_UPDATE);
+		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_BORDER_UPDATE);
 		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_CHECK_GAME_OVER);
 	}
 		break;
 
 	case AR_GAME_RESET: {
 		APP_DBG_SIG("AR_GAME_RESET\n");
-		// Reset game
-		ar_game_status = GAME_LOSE;
+		// Reset game Object
 		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_RESET);
 		task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RESET);
 		task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_RESET);
-		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_BORDER_RESET);
 		task_post_pure_msg(AR_GAME_BANG_ID, 		AR_GAME_BANG_RESET);
-		// Timer
+		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_BORDER_RESET);
+		// Timer Exit
 		timer_set(	AC_TASK_DISPLAY_ID, \
 					AR_GAME_EXIT_GAME, \
 					AR_GAME_TIME_EXIT_INTERVAL, \
 					TIMER_ONE_SHOT);
-		BUZZER_PlayTones(tones_3beep);
+		// Save and reset Score
+		ar_game_save_and_reset_score();
+		// Status update
+		ar_game_status = GAME_OVER;
 	}
+		BUZZER_PlayTones(tones_3beep);
 		break;
 
 	case AR_GAME_EXIT_GAME: {
 		APP_DBG_SIG("AR_GAME_EXIT_GAME\n");
+		// Status update
 		ar_game_status = GAME_OFF;
-		ar_game_save_score();
+		// Change the screen
 		SCREEN_TRAN(scr_game_over_handle, &scr_game_over);		
 	}
 		break;
