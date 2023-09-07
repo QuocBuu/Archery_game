@@ -86,21 +86,6 @@ void ar_game_meteoroid_display() {
 	}
 }
 
-void ar_game_border_display() {
-	if (border.visible == WHITE) {
-		view_render.drawFastVLine(	border.x, \
-									AXIS_Y_BORDER_ON, \
-									AXIS_Y_BORDER_UNDER, \
-									WHITE);
-		for (uint8_t i = 0; i < NUM_METEOROIDS; i++) {
-			view_render.fillCircle(	border.x, \
-									meteoroid[i].y + 5, \
-									1, \
-									WHITE);
-		}
-	}
-}
-
 void ar_game_bang_display() {
 	for (uint8_t i = 0; i < NUM_BANG; i++) {
 		if (bang[i].visible == WHITE) {
@@ -132,6 +117,21 @@ void ar_game_bang_display() {
 	}
 }
 
+void ar_game_border_display() {
+	if (border.visible == WHITE) {
+		view_render.drawFastVLine(	border.x, \
+									AXIS_Y_BORDER_ON, \
+									AXIS_Y_BORDER_UNDER, \
+									WHITE);
+		for (uint8_t i = 0; i < NUM_METEOROIDS; i++) {
+			view_render.fillCircle(	border.x, \
+									meteoroid[i].y + 5, \
+									1, \
+									WHITE);
+		}
+	}
+}
+
 static void view_scr_archery_game();
 
 view_dynamic_t dyn_view_item_archery_game = {
@@ -155,8 +155,8 @@ void view_scr_archery_game() {
 		ar_game_archery_display();
 		ar_game_arrow_display();
 		ar_game_meteoroid_display();
-		ar_game_border_display();
 		ar_game_bang_display();
+		ar_game_border_display();
 	}
 	else if (ar_game_status == GAME_OVER) {
 		view_render.clear();
@@ -207,6 +207,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 		// Status update
 		ar_game_status = GAME_ON;
 	}
+		BUZZER_PlayTones(tones_SMB);
 		break;
 
 	case AR_GAME_TIME_TICK: {
