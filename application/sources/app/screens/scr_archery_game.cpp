@@ -9,7 +9,7 @@ ar_game_setting_t settingsetup;
 /*****************************************************************************/
 /* View - Archery game screen*/
 /*****************************************************************************/
-void ar_game_screen_display() {
+void ar_game_frame_display() {
 	view_render.setTextSize(1);
 	view_render.setTextColor(WHITE);
 	view_render.setCursor(2,55);
@@ -151,7 +151,7 @@ view_screen_t scr_archery_game = {
 
 void view_scr_archery_game() {
 	if (ar_game_status == GAME_ON) {
-		ar_game_screen_display();
+		ar_game_frame_display();
 		ar_game_archery_display();
 		ar_game_arrow_display();
 		ar_game_meteoroid_display();
