@@ -784,21 +784,41 @@ int32_t shell_buzzer(uint8_t* argv) {
 		break;
 
 	case '1': {
-		BUZZER_PlayTones(tones_startup);
+		BUZZER_PlayTones(tones_cc);
 	}
 		break;
 
 	case '2': {
-		BUZZER_PlayTones(tones_3beep);
+		BUZZER_PlayTones(tones_BUM);
 	}
 		break;
 
 	case '3': {
-		BUZZER_PlayTones(tones_SMB);
+		BUZZER_PlayTones(tones_USB_con);
 	}
 		break;
 
 	case '4': {
+		BUZZER_PlayTones(tones_USB_dis);
+	}
+		break;
+
+	case '5': {
+		BUZZER_PlayTones(tones_startup);
+	}
+		break;
+
+	case '6': {
+		BUZZER_PlayTones(tones_3beep);
+	}
+		break;
+
+	case '7': {
+		BUZZER_PlayTones(tones_SMB);
+	}
+		break;
+
+	case '8': {
 		BUZZER_PlayTones(tones_merryChrismast);
 	}
 		break;
@@ -806,10 +826,14 @@ int32_t shell_buzzer(uint8_t* argv) {
 	default:
 		LOGIN_PRINT("\n[HELP]\n");
 		LOGIN_PRINT("1. \"beep i\"                           : init buzzer play tones \n");
-		LOGIN_PRINT("2. \"beep 1\"                           : buzzer play tones startup \n");
-		LOGIN_PRINT("3. \"beep 2\"                           : buzzer play tones three beeps \n");
-		LOGIN_PRINT("4. \"beep 3\"                           : buzzer play tones super mario bros \n");
-		LOGIN_PRINT("4. \"beep 4\"                           : buzzer play tones merry chrismast \n");
+		LOGIN_PRINT("2. \"beep 1\"                           : buzzer play tones cc \n");
+		LOGIN_PRINT("3. \"beep 2\"                           : buzzer play tones BUM \n");
+		LOGIN_PRINT("4. \"beep 3\"                           : buzzer play tones USB con \n");
+		LOGIN_PRINT("5. \"beep 4\"                           : buzzer play tones USB dis \n");
+		LOGIN_PRINT("6. \"beep 5\"                           : buzzer play tones startup \n");
+		LOGIN_PRINT("7. \"beep 6\"                           : buzzer play tones three beeps \n");
+		LOGIN_PRINT("8. \"beep 7\"                           : buzzer play tones super mario bros \n");
+		LOGIN_PRINT("9. \"beep 8\"                           : buzzer play tones merry chrismast \n");
 		break;
 	}
 
