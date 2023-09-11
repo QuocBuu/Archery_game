@@ -3,7 +3,7 @@
 #include "ar_game_meteoroid.h"
 #include "ar_game_arrow.h"
 
-ar_game_object_t bang[NUM_BANG];
+ar_game_bang_t bang[NUM_BANG];
 
 #define AR_GAME_BANG_SETUP() \
 do { \

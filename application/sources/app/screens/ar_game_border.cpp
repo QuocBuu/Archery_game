@@ -3,7 +3,7 @@
 #include "ar_game_meteoroid.h"
 #include "ar_game_archery.h"
 
-ar_game_object_t border;
+ar_game_border_t border;
 uint32_t ar_game_score = 10;
 
 #define AR_GAME_BORDER_SETUP() \

@@ -3,7 +3,7 @@
 #include "ar_game_archery.h"
 #include "scr_archery_game.h"
 
-ar_game_object_t arrow[MAX_NUM_ARROW];
+ar_game_arrow_t arrow[MAX_NUM_ARROW];
 
 #define AR_GAME_ARROW_SETUP()  \
 do { \

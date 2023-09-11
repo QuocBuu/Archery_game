@@ -5,7 +5,7 @@
 #include "ar_game_border.h"
 #include "scr_archery_game.h"
 
-ar_game_object_t meteoroid[NUM_METEOROIDS];
+ar_game_meteoroid_t meteoroid[NUM_METEOROIDS];
 
 #define AR_GAME_METEOROID_SETUP() \
 do { \
