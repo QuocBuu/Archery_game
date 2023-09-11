@@ -13,6 +13,8 @@
 #include "task_list.h"
 #include "task_display.h"
 
+#include "screens.h"
+
 #define STEP_ARCHERY_AXIS_Y     (10)
 #define SIZE_BITMAP_ARCHERY_X   (15)
 #define SIZE_BITMAP_ARCHERY_Y   (15)

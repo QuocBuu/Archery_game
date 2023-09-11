@@ -14,6 +14,7 @@
 #include "task_display.h"
 
 #include "buzzer.h"
+#include "screens.h"
 
 #define NUM_METEOROIDS              (5)
 #define SIZE_BITMAP_METEOROIDS_X    (20)

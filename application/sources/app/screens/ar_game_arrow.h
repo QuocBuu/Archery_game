@@ -13,6 +13,7 @@
 #include "task_display.h"
 
 #include "buzzer.h"
+#include "screens.h"
 
 #define MAX_NUM_ARROW       (5)
 #define MAX_AXIS_X_ARROW    (120)

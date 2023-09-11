@@ -14,6 +14,7 @@
 #include "task_display.h"
 
 #include "buzzer.h"
+#include "screens.h"
 
 #define AXIS_X_BORDER           (15)
 #define AXIS_Y_BORDER_ON        (2)

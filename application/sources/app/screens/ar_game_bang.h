@@ -13,6 +13,8 @@
 #include "task_list.h"
 #include "task_display.h"
 
+#include "screens.h"
+
 #define NUM_BANG                 (5)
 #define SIZE_BITMAP_BANG_I_X     (15)
 #define SIZE_BITMAP_BANG_I_Y     (15)
