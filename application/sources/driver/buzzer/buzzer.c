@@ -138,7 +138,7 @@ void BUZZER_PlayTones(const Tone_TypeDef * tones) {
 	}
 }
 
-// Off buzzer -- buu
+// Off Buzzer --- Buu
 void BUZZER_Sleep(bool sleep) {
 #define ON	(1)
 #define OFF	(0)

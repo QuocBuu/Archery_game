@@ -269,6 +269,7 @@ void scr_menu_game_handle(ak_msg_t* msg) {
 					AC_DISPLAY_IDLE_INTERVAL, \
 					TIMER_ONE_SHOT);
 	}
+		BUZZER_PlayTones(tones_cc);
 		break;
 
 	case AC_DISPLAY_BUTTON_DOWN_RELEASED: {
@@ -295,6 +296,7 @@ void scr_menu_game_handle(ak_msg_t* msg) {
 					AC_DISPLAY_IDLE_INTERVAL, \
 					TIMER_ONE_SHOT);
 	}
+		BUZZER_PlayTones(tones_cc);
 		break;
 
 	default:

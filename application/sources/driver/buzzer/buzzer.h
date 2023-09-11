@@ -15,15 +15,42 @@ typedef struct {
 	uint8_t  duration;
 } Tone_TypeDef;
 
+static const Tone_TypeDef tones_cc[] = {
+	{2000,2}, 
+	{   0,0}, 
+};
+
 static const Tone_TypeDef tones_BUM[] = {
 	{3000,3},
 	{4500,6},
 	{   0,0}
 };
 
-static const Tone_TypeDef tones_cc[] = {
-	{2000,2}, 
-	{   0,0}, 
+static const Tone_TypeDef tones_USB_con[] = {
+	{ 400,4},
+	{   0,1},
+	{1600,2},
+	{   0,0}
+};
+
+static const Tone_TypeDef tones_USB_dis[] = {
+	{1600,4},
+	{   0,1},
+	{ 400,2},
+	{   0,0}
+};
+
+static const Tone_TypeDef tones_Lets_go[] = {
+	{ 262,100},
+	{ 330,100},
+	{ 392,100},
+	{ 349,100},
+	{ 330,100},
+	{ 392,100},
+	{  44,100},
+	{   0,200},
+	{   0,200},
+	{   0,0}     // <-- tones end
 };
 
 static const Tone_TypeDef tones_startup[] = {

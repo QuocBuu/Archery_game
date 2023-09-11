@@ -207,7 +207,6 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 		// Status update
 		ar_game_status = GAME_ON;
 	}
-		BUZZER_PlayTones(tones_SMB);
 		break;
 
 	case AR_GAME_TIME_TICK: {
