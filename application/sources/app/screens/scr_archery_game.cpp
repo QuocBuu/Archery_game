@@ -218,7 +218,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 		task_post_pure_msg(AR_GAME_METEOROID_ID, 	AR_GAME_METEOROID_RUN);
 		task_post_pure_msg(AR_GAME_METEOROID_ID, 	AR_GAME_METEOROID_DETONATOR);
 		task_post_pure_msg(AR_GAME_BANG_ID, 		AR_GAME_BANG_UPDATE);
-		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_BORDER_UPDATE);
+		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_LEVEL_UP);
 		task_post_pure_msg(AR_GAME_BORDER_ID, 		AR_GAME_CHECK_GAME_OVER);
 	}
 		break;

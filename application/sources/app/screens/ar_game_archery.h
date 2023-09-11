@@ -19,12 +19,6 @@
 #define AXIS_X_ARCHERY          (0)
 #define AXIS_Y_ARCHERY          (30)
 
-typedef struct {
-    bool visible;
-    uint32_t x, y;
-    uint8_t action_image;
-} ar_game_archery_t;
-
-extern ar_game_archery_t archery;
+extern ar_game_object_t archery;
 
 #endif //__AR_GAME_ARCHERY_H__

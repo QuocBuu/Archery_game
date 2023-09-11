@@ -25,12 +25,6 @@
 #define AXIS_Y_METEOROID_3          (32)
 #define AXIS_Y_METEOROID_4          (42)
 
-typedef struct {
-    bool visible;
-    uint32_t x, y;
-    uint8_t action_image;
-} ar_game_meteoroid_t;
-
-extern ar_game_meteoroid_t meteoroid[NUM_METEOROIDS];
+extern ar_game_object_t meteoroid[NUM_METEOROIDS];
 
 #endif //__AR_GAME_METEOROID_H__

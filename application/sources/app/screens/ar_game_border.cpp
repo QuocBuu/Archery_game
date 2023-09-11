@@ -3,7 +3,7 @@
 #include "ar_game_meteoroid.h"
 #include "ar_game_archery.h"
 
-ar_game_border_t border;
+ar_game_object_t border;
 uint32_t ar_game_score = 10;
 
 #define AR_GAME_BORDER_SETUP() \
@@ -13,7 +13,7 @@ do { \
     border.action_image = 0; \
 } while (0);
 
-#define AR_GAME_BORDER_UPDATE() \
+#define AR_GAME_LEVEL_UP() \
 do { \
     if (ar_game_score%200 == 0) { \
         /* border.x += 10; */\
@@ -24,12 +24,6 @@ do { \
     } \
 } while(0);
 
-#define AR_GAME_BORDER_RESET() \
-do { \
-    border.x = AXIS_X_BORDER; \
-    border.visible = BLACK; \
-} while (0);
-
 #define AR_GAME_CHECK_GAME_OVER() \
 do { \
     for (uint8_t i = 0; i < NUM_METEOROIDS; i++) { \
@@ -39,6 +33,12 @@ do { \
     } \
 } while(0);
 
+#define AR_GAME_BORDER_RESET() \
+do { \
+    border.x = AXIS_X_BORDER; \
+    border.visible = BLACK; \
+} while (0);
+
 void ar_game_border_handle(ak_msg_t* msg) {
     switch (msg->sig) {
     case AR_GAME_BORDER_SETUP: {
@@ -47,9 +47,15 @@ void ar_game_border_handle(ak_msg_t* msg) {
     }
         break;
 
-    case AR_GAME_BORDER_UPDATE: {
-        APP_DBG_SIG("AR_GAME_BORDER_UPDATE\n");
-        AR_GAME_BORDER_UPDATE();
+    case AR_GAME_LEVEL_UP: {
+        APP_DBG_SIG("AR_GAME_LEVEL_UP\n");
+        AR_GAME_LEVEL_UP();
+    }
+        break;
+
+    case AR_GAME_CHECK_GAME_OVER: {
+        APP_DBG_SIG("AR_GAME_CHECK_GAME_OVER\n");
+        AR_GAME_CHECK_GAME_OVER();
     }
         break;
 
@@ -59,12 +65,6 @@ void ar_game_border_handle(ak_msg_t* msg) {
     }
         break;
     
-    case AR_GAME_CHECK_GAME_OVER: {
-        APP_DBG_SIG("AR_GAME_CHECK_GAME_OVER\n");
-        AR_GAME_CHECK_GAME_OVER();
-    }
-        break;
-
     default:
         break;
     }

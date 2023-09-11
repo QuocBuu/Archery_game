@@ -212,9 +212,9 @@ enum {
 /* define signal */
 enum {
 	AR_GAME_BORDER_SETUP = AR_GAME_DEFINE_SIG,
-	AR_GAME_BORDER_UPDATE,
-	AR_GAME_BORDER_RESET,
+	AR_GAME_LEVEL_UP,
 	AR_GAME_CHECK_GAME_OVER,
+	AR_GAME_BORDER_RESET,
 };
 
 /*****************************************************************************/

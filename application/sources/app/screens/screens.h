@@ -9,6 +9,13 @@
 #include "scr_menu_game.h"
 #include "scr_startup.h"
 
+// Struct object
+typedef struct {
+    bool visible;
+    uint32_t x, y;
+    uint8_t action_image;
+} ar_game_object_t;
+
 // scr_archery_game
 extern view_dynamic_t dyn_view_item_archery_game;
 extern view_screen_t scr_archery_game;
