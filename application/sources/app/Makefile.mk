@@ -1,3 +1,4 @@
+include sources/app/game/Makefile.mk
 include sources/app/screens/Makefile.mk
 
 CFLAGS		+= -I./sources/app
