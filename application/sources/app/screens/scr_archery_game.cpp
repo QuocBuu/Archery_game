@@ -5,7 +5,7 @@
 /*****************************************************************************/
 /* Variable Declaration - Archery game screen */
 /*****************************************************************************/
-uint8_t ar_game_status; 
+uint8_t ar_game_state; 
 ar_game_setting_t settingsetup;
 
 /*****************************************************************************/
@@ -152,7 +152,7 @@ view_screen_t scr_archery_game = {
 };
 
 void view_scr_archery_game() {
-	if (ar_game_status == GAME_ON) {
+	if (ar_game_state == GAME_PLAY) {
 		ar_game_frame_display();
 		ar_game_archery_display();
 		ar_game_arrow_display();
@@ -160,7 +160,7 @@ void view_scr_archery_game() {
 		ar_game_bang_display();
 		ar_game_border_display();
 	}
-	else if (ar_game_status == GAME_OVER) {
+	else if (ar_game_state == GAME_OVER) {
 		view_render.clear();
 		view_render.setTextSize(2);
 		view_render.setTextColor(WHITE);
@@ -207,7 +207,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 		// Setup timer
 		ar_game_time_tick_setup();
 		// Status update
-		ar_game_status = GAME_ON;
+		ar_game_state = GAME_PLAY;
 	}
 		break;
 
@@ -240,7 +240,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 		// Save and reset Score
 		ar_game_save_and_reset_score();
 		// Status update
-		ar_game_status = GAME_OVER;
+		ar_game_state = GAME_OVER;
 	}
 		BUZZER_PlayTones(tones_3beep);
 		break;
@@ -248,7 +248,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 	case AR_GAME_EXIT_GAME: {
 		APP_DBG_SIG("AR_GAME_EXIT_GAME\n");
 		// Status update
-		ar_game_status = GAME_OFF;
+		ar_game_state = GAME_OFF;
 		// Change the screen
 		SCREEN_TRAN(scr_game_over_handle, &scr_game_over);		
 	}
