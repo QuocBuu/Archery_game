@@ -45,14 +45,8 @@ RELEASE_OPTION = -URELEASE
 # Enable PIN (using led life) interrupt analyzer function [entry IRQ -> led life ON] and [exit IRQ -> led life OFF].
 IRQ_DEBUG_OPTION = -UAK_IO_IRQ_ANALYZER
 
-# Enable to using USB hareware configuration.
-USB_OPTION = -UUSING_USB_MOD
-
 # Interface compile option.
 IF_LINK_OPTION = -DIF_LINK_UART_EN
-
-# Task compile option.
-TASK_MBMASTER_OPTION = -DTASK_MBMASTER_EN
 
 # Include sources file
 include sources/ak/Makefile.mk
@@ -109,11 +103,6 @@ FPU = -mfloat-abi=soft
 
 # Interface option
 IF_OPTION +=	$(IF_LINK_OPTION)		\
-		$(IF_NETWORK_NRF24_OPTION)	\
-
-# App option
-TASK_OPTION +=	$(TASK_ZIGBEE_OPTION)
-TASK_OPTION +=	$(TASK_MBMASTER_OPTION)
 
 # Console log compile option
 CONSOLE_OPTION +=			\
@@ -135,7 +124,6 @@ GENERAL_FLAGS +=			\
 		$(APP_ADDR_OPTION)	\
 		$(USB_OPTION)		\
 		$(IF_OPTION)		\
-		$(TASK_OPTION)		\
 		-DUSE_STDPERIPH_DRIVER	\
 		-DSTM32L1XX_MD		\
 		-DSTM32L_PLATFORM	\
