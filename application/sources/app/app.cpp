@@ -91,15 +91,6 @@ static void app_task_init();
  */
 /*****************************************************************************/
 int main_app() {
-	// uint32_t num = 0;
-
-	// eeprom_read(0, (uint8_t*)&num, sizeof(num));
-	// APP_PRINT("num: 0x%d\n", num);
-
-	// while (1) {
-
-	// }
-
 	APP_PRINT("App run mode: %s, App version: %d.%d.%d.%d\n", app_run_mode, app_info.version[0] \
 			, app_info.version[1]	\
 			, app_info.version[2]	\
