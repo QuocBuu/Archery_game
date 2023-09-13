@@ -206,7 +206,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 		task_post_pure_msg(AR_GAME_BORDER_ID, 	 	AR_GAME_BORDER_SETUP);
 		// Setup timer
 		ar_game_time_tick_setup();
-		// Status update
+		// State update
 		ar_game_state = GAME_PLAY;
 	}
 		break;
@@ -239,7 +239,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 					TIMER_ONE_SHOT);
 		// Save and reset Score
 		ar_game_save_and_reset_score();
-		// Status update
+		// State update
 		ar_game_state = GAME_OVER;
 	}
 		BUZZER_PlayTones(tones_3beep);
@@ -247,7 +247,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 
 	case AR_GAME_EXIT_GAME: {
 		APP_DBG_SIG("AR_GAME_EXIT_GAME\n");
-		// Status update
+		// State update
 		ar_game_state = GAME_OFF;
 		// Change the screen
 		SCREEN_TRAN(scr_game_over_handle, &scr_game_over);		
