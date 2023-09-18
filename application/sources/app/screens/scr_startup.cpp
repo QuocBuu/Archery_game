@@ -54,10 +54,20 @@ void scr_startup_handle(ak_msg_t* msg) {
 					AC_DISPLAY_SHOW_LOGO, \
 					AC_DISPLAY_STARTUP_INTERVAL, \
 					TIMER_ONE_SHOT);
-		// Read setting
+		// Check setting game
 		eeprom_read(	EEPROM_SETTING_START_ADDR, \
-						(uint8_t*)&settingdata, \
-						sizeof(settingdata));
+							(uint8_t*)&settingdata, \
+							sizeof(settingdata));
+	
+		if (settingdata.meteoroid_speed == 0) {
+			settingdata.arrow_speed = 5;
+			settingdata.meteoroid_speed = 1;
+			settingdata.num_arrow = 5;
+			eeprom_write(	EEPROM_SETTING_START_ADDR, \
+								(uint8_t*)&settingdata, \
+								sizeof(settingdata));
+		}
+
 		BUZZER_Sleep(settingdata.silent);
 	}
 		break;
