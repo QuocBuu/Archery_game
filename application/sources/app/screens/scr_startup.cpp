@@ -54,18 +54,22 @@ void check_setting_game() {
 							(uint8_t*)&settingdata, \
 							sizeof(settingdata));
 	// Check data
-		if (settingdata.meteoroid_speed == 0 \
-			|| settingdata.arrow_speed == 0 \
-			|| settingdata.num_arrow == 0) {
-			// Init data setting
-			settingdata.arrow_speed = INIT_SETTING_GAME_ARROW_SPEED;
-			settingdata.meteoroid_speed = INIT_SETTING_GAME_METEOROID_SPEED;
-			settingdata.num_arrow = INIT_SETTING_GAME_NUM_ARROW;
-			// Write data
-			eeprom_write(	EEPROM_SETTING_START_ADDR, \
-								(uint8_t*)&settingdata, \
-								sizeof(settingdata));
-		}
+	if (settingdata.meteoroid_speed == 0 \
+		|| settingdata.arrow_speed == 0 \
+		|| settingdata.num_arrow == 0 \
+		|| settingdata.meteoroid_speed > 5 \
+		|| settingdata.arrow_speed > 5 \
+		|| settingdata.num_arrow > 5) {
+		// Init data setting
+		settingdata.arrow_speed = INIT_SETTING_GAME_ARROW_SPEED;
+		settingdata.meteoroid_speed = INIT_SETTING_GAME_METEOROID_SPEED;
+		settingdata.num_arrow = INIT_SETTING_GAME_NUM_ARROW;
+		settingdata.silent = false;
+		// Write data
+		eeprom_write(	EEPROM_SETTING_START_ADDR, \
+							(uint8_t*)&settingdata, \
+							sizeof(settingdata));
+	}
 	BUZZER_Sleep(settingdata.silent);
 }
 
